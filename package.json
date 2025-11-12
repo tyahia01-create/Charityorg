@@ -1,0 +1,49 @@
+{
+  "name": "elgarhy-foundation-app",
+  "productName": "مؤسسة الجارحي",
+  "version": "1.0.0",
+  "description": "Dashboard for Elgarhy Foundation",
+  "main": "main.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "homepage": "https://tyahia01.github.io/Charityorg"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@vitejs/plugin-react": "^4.2.0",
+    "autoprefixer": "^10.4.19",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  },
+  "build": {
+    "appId": "com.elgarhy.foundation.app",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
