@@ -20,9 +20,12 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
     const availableEmployees = useMemo(() => {
         return employees.filter(emp => emp.national_id !== 'VOLUNTEER');
     }, [employees]);
+<<<<<<< HEAD
     
     const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500";
     const labelClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -74,15 +77,26 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
         <div>
             <Header title="شاشة الحافز" icon="fa-award" />
 
+<<<<<<< HEAD
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md mb-8">
                 <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
                     <div>
                         <label htmlFor="employee" className={labelClasses}>اختر الموظف</label>
+=======
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md mb-8">
+                <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                    <div>
+                        <label htmlFor="employee" className="block text-sm font-medium text-gray-300 mb-1">اختر الموظف</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         <select
                             id="employee"
                             value={selectedEmployeeId}
                             onChange={(e) => setSelectedEmployeeId(e.target.value)}
+<<<<<<< HEAD
                             className={inputClasses}
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                             required
                         >
                             <option value="">-- اختر باحث --</option>
@@ -90,24 +104,40 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
                         </select>
                     </div>
                     <div>
+<<<<<<< HEAD
                         <label htmlFor="startDate" className={labelClasses}>من تاريخ</label>
+=======
+                        <label htmlFor="startDate" className="block text-sm font-medium text-gray-300 mb-1">من تاريخ</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         <input
                             id="startDate"
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
+<<<<<<< HEAD
                             className={inputClasses}
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                             required
                         />
                     </div>
                     <div>
+<<<<<<< HEAD
                         <label htmlFor="endDate" className={labelClasses}>إلى تاريخ</label>
+=======
+                        <label htmlFor="endDate" className="block text-sm font-medium text-gray-300 mb-1">إلى تاريخ</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         <input
                             id="endDate"
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
+<<<<<<< HEAD
                             className={inputClasses}
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                             required
                         />
                     </div>
@@ -118,9 +148,15 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
             </div>
 
             {currentSearchCriteria && (
+<<<<<<< HEAD
                 <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
                     <table className="w-full text-right">
                         <thead className="bg-gray-50 dark:bg-gray-700">
+=======
+                <div className="bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                    <table className="w-full text-right">
+                        <thead className="bg-gray-700">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                             <tr>
                                 <th className="p-3">اسم المستفيد</th>
                                 <th className="p-3">المركز</th>
@@ -130,7 +166,11 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
                         </thead>
                         <tbody>
                             {searchResults.length > 0 ? searchResults.map(ben => (
+<<<<<<< HEAD
                                 <tr key={ben.national_id} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+=======
+                                <tr key={ben.national_id} className="border-b border-gray-700 hover:bg-gray-700/50">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                                     <td className="p-3">{ben.name}</td>
                                     <td className="p-3">{ben.city}</td>
                                     <td className="p-3">{ben.governorate}</td>
@@ -140,26 +180,44 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
                                                 <input
                                                     type="radio"
                                                     name={`type-${ben.national_id}`}
+<<<<<<< HEAD
                                                     className="form-radio h-5 w-5 text-emerald-500 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 focus:ring-emerald-500"
                                                     onChange={() => handleTypeChange(ben.national_id, 'داخلي')}
                                                 />
                                                 <span className="mr-2 text-gray-700 dark:text-gray-200">داخلي</span>
+=======
+                                                    className="form-radio h-5 w-5 text-emerald-500 bg-gray-900 border-gray-600 focus:ring-emerald-500"
+                                                    onChange={() => handleTypeChange(ben.national_id, 'داخلي')}
+                                                />
+                                                <span className="mr-2 text-gray-200">داخلي</span>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                                             </label>
                                             <label className="flex items-center cursor-pointer">
                                                 <input
                                                     type="radio"
                                                     name={`type-${ben.national_id}`}
+<<<<<<< HEAD
                                                     className="form-radio h-5 w-5 text-amber-500 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 focus:ring-amber-500"
                                                     onChange={() => handleTypeChange(ben.national_id, 'خارجي')}
                                                 />
                                                 <span className="mr-2 text-gray-700 dark:text-gray-200">خارجي</span>
+=======
+                                                    className="form-radio h-5 w-5 text-amber-500 bg-gray-900 border-gray-600 focus:ring-amber-500"
+                                                    onChange={() => handleTypeChange(ben.national_id, 'خارجي')}
+                                                />
+                                                <span className="mr-2 text-gray-200">خارجي</span>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                                             </label>
                                         </div>
                                     </td>
                                 </tr>
                             )) : (
                                 <tr>
+<<<<<<< HEAD
                                     <td colSpan={4} className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+                                    <td colSpan={4} className="text-center p-6 text-gray-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                                         لا توجد أبحاث مسلمة لهذا الباحث في الفترة المحددة.
                                     </td>
                                 </tr>
@@ -170,6 +228,7 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
             )}
             
             {summary && (
+<<<<<<< HEAD
                 <div className="mt-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg animate-fade-in">
                     <h3 className="text-2xl font-bold mb-4 text-emerald-600 dark:text-emerald-400">ملخص النتائج</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
@@ -191,10 +250,37 @@ export const IncentivePage: React.FC<IncentivePageProps> = ({ employees, benefic
                         </div>
                     </div>
                     <div className="mt-4 text-center text-lg text-gray-700 dark:text-gray-300">
+=======
+                <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg animate-fade-in">
+                    <h3 className="text-2xl font-bold mb-4 text-emerald-400">ملخص النتائج</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                         <div className="bg-gray-700 p-4 rounded-lg">
+                            <p className="text-sm text-gray-400">اسم الباحث</p>
+                            <p className="text-xl font-bold text-white">{summary.employeeName}</p>
+                        </div>
+                        <div className="bg-gray-700 p-4 rounded-lg">
+                            <p className="text-sm text-gray-400">الفترة الزمنية</p>
+                            <p className="text-xl font-bold text-white">{summary.period}</p>
+                        </div>
+                        <div className="bg-emerald-900/50 p-4 rounded-lg">
+                            <p className="text-sm text-emerald-300">عدد المستفيدين (داخل)</p>
+                            <p className="text-3xl font-bold text-white">{summary.internalCount}</p>
+                        </div>
+                        <div className="bg-amber-900/50 p-4 rounded-lg">
+                            <p className="text-sm text-amber-300">عدد المستفيدين (خارج)</p>
+                            <p className="text-3xl font-bold text-white">{summary.externalCount}</p>
+                        </div>
+                    </div>
+                    <div className="mt-4 text-center text-lg text-gray-300">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         <strong>إجمالي الأبحاث المسلمة: {summary.total}</strong>
                     </div>
                 </div>
             )}
         </div>
     );
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f

@@ -8,6 +8,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
+<<<<<<< HEAD
   // Tauri configuration
   clearScreen: false,
   server: {
@@ -16,3 +17,6 @@ export default defineConfig({
   },
   envPrefix: ['VITE_', 'TAURI_'],
 })
+=======
+})
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f

@@ -70,6 +70,10 @@ export interface Operation {
   pending_date?: string;
   disbursement_status?: DisbursementStatus;
   disbursement_date?: string;
+<<<<<<< HEAD
+=======
+  employee_national_id?: string;
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
 }
 
 export interface Task {
@@ -93,4 +97,8 @@ export interface AppData {
 // Add a simple interface for children props
 export interface ChildrenProps {
   children: ReactNode;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f

@@ -48,16 +48,29 @@ export const initialAssistanceTypes: AssistanceType[] = [
 ];
 
 export const initialOperations: Operation[] = [
+<<<<<<< HEAD
     { id: 1, code: 'OP001', beneficiary_national_id: '29503030100333', assistance_id: 1, amount: 500, date: '2023-02-01', committee_number: 'C1', committee_decision_description: 'Approved for monthly aid.', spending_entity: 'تبرعات أهل الخير', details: 'دفعة أولى من مساعدة مالية شهرية.', status: 'مقبوله', acceptance_date: '2023-02-02', disbursement_status: 'تم الصرف', disbursement_date: '2023-02-05' },
     { id: 2, code: 'OP002', beneficiary_national_id: '29204040200444', assistance_id: 2, amount: 300, date: '2023-03-10', committee_number: 'C1', committee_decision_description: 'Standard food package.', spending_entity: 'مؤسسة الجارحي', details: 'كرتونة مواد غذائية لشهر مارس.', status: 'مقبوله', acceptance_date: '2023-03-11', disbursement_status: 'تم الصرف', disbursement_date: '2023-03-12' },
     { id: 3, code: 'OP003', beneficiary_national_id: '29503030100333', assistance_id: 2, amount: 250, date: '2023-04-05', committee_number: 'C2', committee_decision_description: 'Requires further review.', spending_entity: 'مؤسسة الجارحي', details: 'مساعدة غذائية إضافية.', status: 'معلقة', pending_date: '2023-04-06' },
     { id: 4, code: 'OP004', beneficiary_national_id: '29503030100333', assistance_id: 3, amount: 1000, date: '2023-06-15', committee_number: 'C3', committee_decision_description: 'Urgent medical need approved.', spending_entity: 'فاعل خير', details: 'تكاليف عملية جراحية للابن.', status: 'مقبوله', acceptance_date: '2023-06-16', disbursement_status: 'جاري التنفيذ' },
     { id: 5, code: 'OP005', beneficiary_national_id: '29503030100333', assistance_id: 1, amount: 400, date: '2023-08-20', committee_number: 'C4', committee_decision_description: 'Beneficiary did not meet criteria.', spending_entity: 'تبرعات', details: '', status: 'مرفوضه' },
     { id: 6, code: 'OP006', beneficiary_national_id: '28805050100555', assistance_id: 1, amount: 700, date: '2023-09-01', committee_number: 'C5', committee_decision_description: 'Rent assistance approved.', spending_entity: 'مؤسسة الجارحي', details: 'مساعدة إيجار لمدة شهر.', status: 'مقبوله', acceptance_date: '2023-09-01', disbursement_status: 'تم الصرف', disbursement_date: '2023-09-02' },
+=======
+    { id: 1, code: 'OP001', beneficiary_national_id: '29503030100333', assistance_id: 1, amount: 500, date: '2023-02-01', committee_number: 'C1', committee_decision_description: 'Approved for monthly aid.', spending_entity: 'تبرعات أهل الخير', details: 'دفعة أولى من مساعدة مالية شهرية.', status: 'مقبوله', acceptance_date: '2023-02-02', disbursement_status: 'تم الصرف', disbursement_date: '2023-02-05', employee_national_id: '28501010100111' },
+    { id: 2, code: 'OP002', beneficiary_national_id: '29204040200444', assistance_id: 2, amount: 300, date: '2023-03-10', committee_number: 'C1', committee_decision_description: 'Standard food package.', spending_entity: 'مؤسسة الجارحي', details: 'كرتونة مواد غذائية لشهر مارس.', status: 'مقبوله', acceptance_date: '2023-03-11', disbursement_status: 'تم الصرف', disbursement_date: '2023-03-12', employee_national_id: '29002020100222' },
+    { id: 3, code: 'OP003', beneficiary_national_id: '29503030100333', assistance_id: 2, amount: 250, date: '2023-04-05', committee_number: 'C2', committee_decision_description: 'Requires further review.', spending_entity: 'مؤسسة الجارحي', details: 'مساعدة غذائية إضافية.', status: 'معلقة', pending_date: '2023-04-06', employee_national_id: '28501010100111' },
+    { id: 4, code: 'OP004', beneficiary_national_id: '29503030100333', assistance_id: 3, amount: 1000, date: '2023-06-15', committee_number: 'C3', committee_decision_description: 'Urgent medical need approved.', spending_entity: 'فاعل خير', details: 'تكاليف عملية جراحية للابن.', status: 'مقبوله', acceptance_date: '2023-06-16', disbursement_status: 'جاري التنفيذ', employee_national_id: '28501010100111' },
+    { id: 5, code: 'OP005', beneficiary_national_id: '29503030100333', assistance_id: 1, amount: 400, date: '2023-08-20', committee_number: 'C4', committee_decision_description: 'Beneficiary did not meet criteria.', spending_entity: 'تبرعات', details: '', status: 'مرفوضه', employee_national_id: '28501010100111' },
+    { id: 6, code: 'OP006', beneficiary_national_id: '28805050100555', assistance_id: 1, amount: 700, date: '2023-09-01', committee_number: 'C5', committee_decision_description: 'Rent assistance approved.', spending_entity: 'مؤسسة الجارحي', details: 'مساعدة إيجار لمدة شهر.', status: 'مقبوله', acceptance_date: '2023-09-01', disbursement_status: 'تم الصرف', disbursement_date: '2023-09-02', employee_national_id: '28501010100111' },
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
 ];
 
 export const initialTasks: Task[] = [
     { id: 1, userId: 1, text: 'متابعة حالة المستفيد محمد عبد الله', isCompleted: false, createdAt: new Date('2023-11-20T10:00:00Z').toISOString(), updatedAt: new Date('2023-11-20T10:00:00Z').toISOString() },
     { id: 2, userId: 1, text: 'التحضير لاجتماع اللجنة الأسبوعي', isCompleted: true, createdAt: new Date('2023-11-18T15:30:00Z').toISOString(), updatedAt: new Date('2023-11-19T09:00:00Z').toISOString() },
     { id: 3, userId: 2, text: 'مراجعة طلبات المساعدات الجديدة', isCompleted: false, createdAt: new Date('2023-11-21T11:00:00Z').toISOString(), updatedAt: new Date('2023-11-21T11:00:00Z').toISOString() },
+<<<<<<< HEAD
 ];
+=======
+];
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f

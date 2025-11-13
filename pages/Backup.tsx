@@ -1,8 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { Header } from '../components/Header';
 import { Button } from '../components/Button';
+<<<<<<< HEAD
 import type { AppData, Employee, Beneficiary, AssistanceType, Operation, Note, User, Task } from '../types';
 import { FileProviderModal } from '../components/FileProviderModal';
+=======
+// FIX: Import Task type to handle tasks during backup/restore.
+import type { AppData, Employee, Beneficiary, AssistanceType, Operation, Note, User, Task } from '../types';
+import { FileProviderModal } from '../components/FileProviderModal';
+// FIX: Import initialTasks to provide a default value when restoring from older backups without a tasks sheet.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
 import { initialTasks } from '../constants';
 
 // This assumes xlsx is loaded from a CDN in index.html
@@ -51,6 +58,10 @@ export const BackupPage: React.FC<BackupPageProps> = ({ onBackup, onRestore, app
             const ws_users = XLSX.utils.json_to_sheet(appData.users);
             XLSX.utils.book_append_sheet(wb, ws_users, "المستخدمين");
             
+<<<<<<< HEAD
+=======
+            // FIX: Add tasks sheet to the Excel backup.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
             const ws_tasks = XLSX.utils.json_to_sheet(appData.tasks);
             XLSX.utils.book_append_sheet(wb, ws_tasks, "المهام");
             
@@ -100,6 +111,10 @@ export const BackupPage: React.FC<BackupPageProps> = ({ onBackup, onRestore, app
                         users = XLSX.utils.sheet_to_json(usersSheet);
                     }
 
+<<<<<<< HEAD
+=======
+                    // FIX: Read tasks from the Excel sheet, with a fallback for older backups.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                     let tasks: Task[] = initialTasks;
                     const tasksSheet = workbook.Sheets['المهام'];
                     if (tasksSheet) {
@@ -120,6 +135,10 @@ export const BackupPage: React.FC<BackupPageProps> = ({ onBackup, onRestore, app
                         const { notes, ...rest } = b;
                         return { ...rest, notes: parsedNotes };
                     });
+<<<<<<< HEAD
+=======
+                    // FIX: Add 'tasks' property to the restoredData object to match the AppData type.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                     restoredData = { users, employees, beneficiaries, assistanceTypes, operations, tasks };
                 } else {
                     throw new Error("Unsupported file type.");
@@ -196,9 +215,15 @@ export const BackupPage: React.FC<BackupPageProps> = ({ onBackup, onRestore, app
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Manual Backup Section */}
+<<<<<<< HEAD
                 <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
                     <h2 className="text-2xl font-bold mb-4 text-emerald-600 dark:text-emerald-400">إنشاء نسخة احتياطية يدوية</h2>
                     <p className="text-gray-700 dark:text-gray-300 mb-6">
+=======
+                <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <h2 className="text-2xl font-bold mb-4 text-emerald-400">إنشاء نسخة احتياطية يدوية</h2>
+                    <p className="text-gray-300 mb-6">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         اضغط على الزر أدناه لتنزيل نسخة كاملة من جميع بياناتك الحالية. احتفظ بهذا الملف في مكان آمن.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
@@ -215,6 +240,7 @@ export const BackupPage: React.FC<BackupPageProps> = ({ onBackup, onRestore, app
                 </div>
 
                 {/* Restore from Backup Section */}
+<<<<<<< HEAD
                 <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
                      <h2 className="text-2xl font-bold mb-4 text-amber-600 dark:text-amber-400">استعادة من نسخة احتياطية</h2>
                      <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -223,6 +249,16 @@ export const BackupPage: React.FC<BackupPageProps> = ({ onBackup, onRestore, app
                     <div className="bg-red-100 dark:bg-red-900/50 border-r-4 border-red-500 p-4 rounded-md mb-6">
                         <p className="font-bold text-red-700 dark:text-red-300"><i className="fas fa-exclamation-triangle mr-2"></i>تحذير هام</p>
                         <p className="text-red-800 dark:text-red-400">
+=======
+                <div className="bg-gray-800 p-8 rounded-lg shadow-lg">
+                     <h2 className="text-2xl font-bold mb-4 text-amber-400">استعادة من نسخة احتياطية</h2>
+                     <p className="text-gray-300 mb-6">
+                        يمكنك استعادة حالة النظام بالكامل من ملف نسخة احتياطية تم إنشاؤه مسبقًا. اختر ملف النسخة الاحتياطية (بصيغة .json أو .xlsx) من جهازك.
+                    </p>
+                    <div className="bg-red-900/50 border-r-4 border-red-500 p-4 rounded-md mb-6">
+                        <p className="font-bold text-red-300"><i className="fas fa-exclamation-triangle mr-2"></i>تحذير هام</p>
+                        <p className="text-red-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                            عملية الاستعادة ستقوم بحذف جميع البيانات الحالية واستبدالها بالبيانات الموجودة في الملف الذي تختاره. هذا الإجراء نهائي ولا يمكن التراجع عنه.
                         </p>
                     </div>

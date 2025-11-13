@@ -11,11 +11,19 @@ import { ExportPage } from './pages/Export';
 import { BackupPage } from './pages/Backup';
 import { IncentivePage } from './pages/Incentive';
 import { LoginPage } from './pages/Login';
+<<<<<<< HEAD
+=======
+import { AboutPage } from './pages/About';
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
 import { initialEmployees, initialBeneficiaries, initialAssistanceTypes, initialOperations, initialTasks } from './constants';
 import type { User, Employee, Beneficiary, AssistanceType, Operation, AppData, Task } from './types';
 import { Toast } from './components/Toast';
 
+<<<<<<< HEAD
 type View = 'dashboard' | 'users' | 'employees' | 'beneficiaries' | 'assistance' | 'operations' | 'search' | 'export' | 'backup' | 'incentive';
+=======
+type View = 'dashboard' | 'users' | 'employees' | 'beneficiaries' | 'assistance' | 'operations' | 'search' | 'export' | 'backup' | 'incentive' | 'about';
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
 
 const LOCAL_STORAGE_KEY = 'charityAppData';
 const LAST_AUTO_BACKUP_KEY = 'lastAutoBackupTimestamp';
@@ -264,7 +272,11 @@ const App: React.FC = () => {
             case 'assistance':
                 return <AssistancePage assistanceTypes={assistanceTypes} setAssistanceTypes={setAssistanceTypes} />;
             case 'operations':
+<<<<<<< HEAD
                 return <OperationsPage operations={operations} setOperations={setOperations} beneficiaries={beneficiaries} assistanceTypes={assistanceTypes} showToast={showToast} />;
+=======
+                return <OperationsPage operations={operations} setOperations={setOperations} beneficiaries={beneficiaries} assistanceTypes={assistanceTypes} employees={employees} showToast={showToast} />;
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
             case 'incentive':
                 return <IncentivePage employees={employees} beneficiaries={beneficiaries} />;
             case 'search':
@@ -273,6 +285,11 @@ const App: React.FC = () => {
                 return <ExportPage data={{ employees, beneficiaries, assistanceTypes, operations }} showToast={showToast} />;
             case 'backup':
                 return <BackupPage onBackup={() => handleBackup(false)} onRestore={handleRestore} appData={appData} showToast={showToast} />;
+<<<<<<< HEAD
+=======
+            case 'about':
+                return <AboutPage />;
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
             default:
                 return <Dashboard 
                             stats={{ employees: employees.length, beneficiaries: beneficiaries.length, operations: operations.length }}
@@ -302,4 +319,8 @@ const App: React.FC = () => {
     );
 };
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f

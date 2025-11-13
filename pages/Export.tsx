@@ -22,10 +22,13 @@ export const ExportPage: React.FC<ExportPageProps> = ({ data, showToast }) => {
     const [endDate, setEndDate] = useState('');
     const [isProviderModalOpen, setIsProviderModalOpen] = useState(false);
 
+<<<<<<< HEAD
     const inputClasses = "p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500";
     const labelClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 text-right";
 
 
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
     const executeLocalExport = () => {
         const filteredBeneficiaries = data.beneficiaries.filter(ben => {
             if (!startDate && !endDate) return true;
@@ -94,35 +97,60 @@ export const ExportPage: React.FC<ExportPageProps> = ({ data, showToast }) => {
     return (
         <div>
             <Header title="تصدير إلى Excel" icon="fa-file-excel" />
+<<<<<<< HEAD
             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg text-center">
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+=======
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center">
+                <p className="text-lg text-gray-300 mb-6">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                     يمكنك تصدير جميع البيانات، أو تحديد نطاق زمني لتصفية سجلات المستفيدين والعمليات قبل التصدير.
                 </p>
 
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-4">
                     <div>
+<<<<<<< HEAD
                         <label htmlFor="startDate" className={labelClasses}>من تاريخ</label>
+=======
+                        <label htmlFor="startDate" className="block text-sm font-medium text-gray-300 mb-1 text-right">من تاريخ</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         <input
                             id="startDate"
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
+<<<<<<< HEAD
                             className={inputClasses}
                         />
                     </div>
                     <div>
                         <label htmlFor="endDate" className={labelClasses}>إلى تاريخ</label>
+=======
+                            className="p-2 bg-gray-700 rounded text-white"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="endDate" className="block text-sm font-medium text-gray-300 mb-1 text-right">إلى تاريخ</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         <input
                             id="endDate"
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
+<<<<<<< HEAD
                             className={inputClasses}
+=======
+                            className="p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                         />
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <p className="text-sm text-gray-500 dark:text-gray-400 my-6 max-w-2xl mx-auto">
+=======
+                <p className="text-sm text-gray-400 my-6 max-w-2xl mx-auto">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
                     سيتم تطبيق النطاق الزمني المحدد على سجلات المستفيدين (حسب تاريخ الانضمام) والعمليات (حسب تاريخ العملية).
                     <br/>
                     <b>لن يتم تطبيق الفلتر على بيانات الموظفين وأنواع المساعدات.</b>
