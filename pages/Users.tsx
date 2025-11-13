@@ -23,9 +23,18 @@ const UserAddForm: React.FC<{
 }> = ({ onSubmit, onClose, existingUsers }) => {
     const [formData, setFormData] = useState({ name: '', mobile: '', username: '', password: '', role: 'مستخدم' as 'مدير' | 'مستخدم' });
     const [errors, setErrors] = useState<{ mobile?: string; username?: string }>({});
+<<<<<<< HEAD
     
     const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
 
+=======
+<<<<<<< HEAD
+    
+    const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
+
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 
     const validate = (data: typeof formData) => {
         const newErrors: { mobile?: string; username?: string } = {};
@@ -66,6 +75,10 @@ const UserAddForm: React.FC<{
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="الاسم الكامل" required className={inputClasses} />
             <div>
                 <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="رقم المحمول" required className={inputClasses} />
@@ -80,6 +93,25 @@ const UserAddForm: React.FC<{
             <div>
                 <label htmlFor="role" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">الفئة</label>
                 <select id="role" name="role" value={formData.role} onChange={handleChange} required className={inputClasses}>
+<<<<<<< HEAD
+=======
+=======
+            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="الاسم الكامل" required className="w-full p-2 bg-gray-700 rounded" />
+            <div>
+                <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="رقم المحمول" required className="w-full p-2 bg-gray-700 rounded" />
+                {errors.mobile && formData.mobile && <p className="text-red-500 text-sm mt-1">{errors.mobile}</p>}
+            </div>
+            <div>
+                <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="اسم المستخدم" required className="w-full p-2 bg-gray-700 rounded" />
+                {errors.username && formData.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
+            </div>
+            <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="كلمة المرور" required className="w-full p-2 bg-gray-700 rounded" />
+            
+            <div>
+                <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">الفئة</label>
+                <select id="role" name="role" value={formData.role} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <option value="مستخدم">مستخدم</option>
                     <option value="مدير">مدير</option>
                 </select>
@@ -105,9 +137,18 @@ const UserEditForm: React.FC<{
         role: userToEdit.role
     });
     const [errors, setErrors] = useState<{ mobile?: string }>({});
+<<<<<<< HEAD
     
     const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
 
+=======
+<<<<<<< HEAD
+    
+    const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
+
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 
     const validate = (data: typeof formData) => {
         const newErrors: { mobile?: string } = {};
@@ -144,6 +185,10 @@ const UserEditForm: React.FC<{
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="الاسم الكامل" required className={inputClasses} />
              <div>
                 <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="رقم المحمول" required className={inputClasses} />
@@ -152,6 +197,19 @@ const UserEditForm: React.FC<{
             <div>
                 <label htmlFor="role" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">الفئة</label>
                 <select id="role" name="role" value={formData.role} onChange={handleChange} required className={inputClasses} disabled={userToEdit.username === 'Admin'}>
+<<<<<<< HEAD
+=======
+=======
+            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="الاسم الكامل" required className="w-full p-2 bg-gray-700 rounded" />
+             <div>
+                <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="رقم المحمول" required className="w-full p-2 bg-gray-700 rounded" />
+                {errors.mobile && formData.mobile && <p className="text-red-500 text-sm mt-1">{errors.mobile}</p>}
+            </div>
+            <div>
+                <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">الفئة</label>
+                <select id="role" name="role" value={formData.role} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded" disabled={userToEdit.username === 'Admin'}>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <option value="مستخدم">مستخدم</option>
                     <option value="مدير">مدير</option>
                 </select>
@@ -174,9 +232,18 @@ const PasswordChangeModal: React.FC<{
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+<<<<<<< HEAD
     
     const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
 
+=======
+<<<<<<< HEAD
+    
+    const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
+
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 
     useEffect(() => {
         if (password && confirmPassword && password !== confirmPassword) {
@@ -203,8 +270,18 @@ const PasswordChangeModal: React.FC<{
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={`تغيير كلمة مرور: ${username}`}>
             <form onSubmit={handleSubmit} className="space-y-4">
+<<<<<<< HEAD
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="كلمة المرور الجديدة" required className={inputClasses} />
                 <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="تأكيد كلمة المرور الجديدة" required className={inputClasses} />
+=======
+<<<<<<< HEAD
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="كلمة المرور الجديدة" required className={inputClasses} />
+                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="تأكيد كلمة المرور الجديدة" required className={inputClasses} />
+=======
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="كلمة المرور الجديدة" required className="w-full p-2 bg-gray-700 rounded" />
+                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="تأكيد كلمة المرور الجديدة" required className="w-full p-2 bg-gray-700 rounded" />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <div className="flex justify-end space-x-2 space-x-reverse pt-4">
                     <Button type="button" variant="secondary" onClick={onClose}>إلغاء</Button>
@@ -357,7 +434,15 @@ export const UsersPage: React.FC<UsersPageProps> = ({ users, setUsers }) => {
     
     const ThSortable: React.FC<{ sortKey: UserSortKey; label: string; }> = ({ sortKey, label }) => (
         <th className="p-3">
+<<<<<<< HEAD
             <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+<<<<<<< HEAD
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-300 hover:text-white transition-colors focus:outline-none">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 <span>{label}</span>
                 <i className={`fas ${getSortDirectionIcon(sortKey)} mr-2`}></i>
             </button>
@@ -374,7 +459,15 @@ export const UsersPage: React.FC<UsersPageProps> = ({ users, setUsers }) => {
                         placeholder="ابحث بالاسم/اسم المستخدم/المحمول..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
+<<<<<<< HEAD
                         className="w-full p-2 bg-white dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+<<<<<<< HEAD
+                        className="w-full p-2 bg-white dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+                        className="w-full p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     />
                 </div>
                  {selectedIds.size > 0 ? (
@@ -386,12 +479,27 @@ export const UsersPage: React.FC<UsersPageProps> = ({ users, setUsers }) => {
                     <Button icon="fa-plus" onClick={() => setIsAddModalOpen(true)}>إضافة مستخدم جديد</Button>
                 )}
             </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
                 <table className="w-full text-right">
                     <thead className="bg-gray-50 dark:bg-gray-700">
                         <tr>
                             <th className="p-3 text-center w-12">
                                 <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+<<<<<<< HEAD
+=======
+=======
+            <div className="bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                <table className="w-full text-right">
+                    <thead className="bg-gray-700">
+                        <tr>
+                            <th className="p-3 text-center w-12">
+                                <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             </th>
                             <ThSortable sortKey="name" label="الاسم الكامل" />
                             <ThSortable sortKey="username" label="اسم المستخدم" />
@@ -402,15 +510,35 @@ export const UsersPage: React.FC<UsersPageProps> = ({ users, setUsers }) => {
                     </thead>
                     <tbody>
                         {sortedUsers.map(user => (
+<<<<<<< HEAD
                             <tr key={user.id} className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${selectedIds.has(user.id) ? 'bg-emerald-50 dark:bg-emerald-900/50' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}>
                                 <td className="p-3 text-center">
                                     <input type="checkbox" checked={selectedIds.has(user.id)} onChange={() => handleSelect(user.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+=======
+<<<<<<< HEAD
+                            <tr key={user.id} className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${selectedIds.has(user.id) ? 'bg-emerald-50 dark:bg-emerald-900/50' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}>
+                                <td className="p-3 text-center">
+                                    <input type="checkbox" checked={selectedIds.has(user.id)} onChange={() => handleSelect(user.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+=======
+                            <tr key={user.id} className={`border-b border-gray-700 transition-colors ${selectedIds.has(user.id) ? 'bg-emerald-900/50' : 'hover:bg-gray-700/50'}`}>
+                                <td className="p-3 text-center">
+                                    <input type="checkbox" checked={selectedIds.has(user.id)} onChange={() => handleSelect(user.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                 </td>
                                 <td className="p-3">{user.name}</td>
                                 <td className="p-3">{user.username}</td>
                                 <td className="p-3">{user.mobile}</td>
                                 <td className="p-3">
+<<<<<<< HEAD
                                     <span className={`px-3 py-1 text-sm font-semibold rounded-full ${user.role === 'مدير' ? 'bg-emerald-800 text-emerald-200' : 'bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200'}`}>
+=======
+<<<<<<< HEAD
+                                    <span className={`px-3 py-1 text-sm font-semibold rounded-full ${user.role === 'مدير' ? 'bg-emerald-800 text-emerald-200' : 'bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200'}`}>
+=======
+                                    <span className={`px-3 py-1 text-sm font-semibold rounded-full ${user.role === 'مدير' ? 'bg-emerald-800 text-emerald-200' : 'bg-gray-600 text-gray-200'}`}>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                         {user.role}
                                     </span>
                                 </td>
@@ -435,7 +563,15 @@ export const UsersPage: React.FC<UsersPageProps> = ({ users, setUsers }) => {
                     </tbody>
                 </table>
                 {sortedUsers.length === 0 && (
+<<<<<<< HEAD
                     <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+<<<<<<< HEAD
+                    <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+                    <div className="text-center p-6 text-gray-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         لا توجد بيانات تطابق معايير البحث الحالية.
                     </div>
                 )}

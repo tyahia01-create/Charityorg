@@ -30,7 +30,15 @@ const AssistanceForm: React.FC<{
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
+<<<<<<< HEAD
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="اسم المساعدة" required className="w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white"/>
+=======
+<<<<<<< HEAD
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="اسم المساعدة" required className="w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white"/>
+=======
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="اسم المساعدة" required className="w-full p-2 bg-gray-700 rounded"/>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="flex justify-end space-x-2 space-x-reverse pt-4">
                 <Button type="button" variant="secondary" onClick={onClose}>إلغاء</Button>
                 <Button type="submit" variant="primary">{assistanceToEdit ? 'تعديل' : 'إضافة'}</Button>
@@ -63,7 +71,15 @@ const Pagination: React.FC<{
                     className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                         currentPage === number 
                         ? 'bg-emerald-500 text-white' 
+<<<<<<< HEAD
                         : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+=======
+<<<<<<< HEAD
+                        : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+=======
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     }`}
                 >
                     {number}
@@ -206,7 +222,15 @@ export const AssistancePage: React.FC<AssistancePageProps> = ({ assistanceTypes,
 
     const ThSortable: React.FC<{ sortKey: AssistanceSortKey; label: string; }> = ({ sortKey, label }) => (
         <th className="p-3">
+<<<<<<< HEAD
             <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+<<<<<<< HEAD
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-300 hover:text-white transition-colors focus:outline-none">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 <span>{label}</span>
                 <i className={`fas ${getSortDirectionIcon(sortKey)} mr-2`}></i>
             </button>
@@ -223,7 +247,15 @@ export const AssistancePage: React.FC<AssistancePageProps> = ({ assistanceTypes,
                         placeholder="ابحث باسم المساعدة..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
+<<<<<<< HEAD
                         className="w-full p-2 bg-white dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+<<<<<<< HEAD
+                        className="w-full p-2 bg-white dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+                        className="w-full p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     />
                 </div>
                  {selectedIds.size > 0 ? (
@@ -235,12 +267,27 @@ export const AssistancePage: React.FC<AssistancePageProps> = ({ assistanceTypes,
                     <Button icon="fa-plus" onClick={() => { setAssistanceToEdit(null); setIsModalOpen(true); }}>إضافة نوع جديد</Button>
                 )}
             </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
                 <table className="w-full text-right">
                     <thead className="bg-gray-50 dark:bg-gray-700">
                         <tr>
                             <th className="p-3 text-center w-12">
                                 <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+<<<<<<< HEAD
+=======
+=======
+            <div className="bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                <table className="w-full text-right">
+                    <thead className="bg-gray-700">
+                        <tr>
+                            <th className="p-3 text-center w-12">
+                                <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             </th>
                             <ThSortable sortKey="id" label="المعرف" />
                             <ThSortable sortKey="name" label="اسم المساعدة" />
@@ -249,9 +296,21 @@ export const AssistancePage: React.FC<AssistancePageProps> = ({ assistanceTypes,
                     </thead>
                     <tbody>
                         {paginatedAssistanceTypes.map(type => (
+<<<<<<< HEAD
                             <tr key={type.id} className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${selectedIds.has(type.id) ? 'bg-emerald-50 dark:bg-emerald-900/50' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}>
                                 <td className="p-3 text-center">
                                     <input type="checkbox" checked={selectedIds.has(type.id)} onChange={() => handleSelect(type.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+=======
+<<<<<<< HEAD
+                            <tr key={type.id} className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${selectedIds.has(type.id) ? 'bg-emerald-50 dark:bg-emerald-900/50' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}>
+                                <td className="p-3 text-center">
+                                    <input type="checkbox" checked={selectedIds.has(type.id)} onChange={() => handleSelect(type.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+=======
+                            <tr key={type.id} className={`border-b border-gray-700 transition-colors ${selectedIds.has(type.id) ? 'bg-emerald-900/50' : 'hover:bg-gray-700/50'}`}>
+                                <td className="p-3 text-center">
+                                    <input type="checkbox" checked={selectedIds.has(type.id)} onChange={() => handleSelect(type.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                 </td>
                                 <td className="p-3">{type.id}</td>
                                 <td className="p-3">{type.name}</td>
@@ -264,7 +323,15 @@ export const AssistancePage: React.FC<AssistancePageProps> = ({ assistanceTypes,
                     </tbody>
                 </table>
                  {sortedAssistanceTypes.length === 0 && (
+<<<<<<< HEAD
                     <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+<<<<<<< HEAD
+                    <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+                    <div className="text-center p-6 text-gray-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         لا توجد بيانات تطابق معايير البحث الحالية.
                     </div>
                 )}

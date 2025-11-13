@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import type { Beneficiary, Employee, Operation, Note } from '../types';
 import { Header } from '../components/Header';
@@ -16,6 +23,13 @@ interface SortConfig {
     direction: SortDirection;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+// FIX: Define a type for the beneficiary form data to ensure type safety.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 type BeneficiaryFormData = Omit<Beneficiary, 'code' | 'notes'>;
 
 interface BeneficiariesPageProps {
@@ -33,6 +47,13 @@ const BeneficiaryForm: React.FC<{
     employees: Employee[];
     beneficiaries: Beneficiary[];
 }> = ({ onSubmit, onClose, beneficiaryToEdit, employees, beneficiaries }) => {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    // FIX: Explicitly type the formData state and provide a consistent initial state object.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     const [formData, setFormData] = useState<BeneficiaryFormData>({ 
         name: '', national_id: '', join_date: '', phone: '', alternative_phone: '', 
         governorate: '', city: '', area: '', detailed_address: '', job: '', 
@@ -41,10 +62,23 @@ const BeneficiaryForm: React.FC<{
         research_submission_date: ''
     });
     const [cities, setCities] = useState<string[]>([]);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     const [errors, setErrors] = useState<{ national_id?: string; phone?: string; alternative_phone?: string }>({});
     const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
     const labelClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
 
+<<<<<<< HEAD
+=======
+=======
+    const [eligibleEmployees, setEligibleEmployees] = useState<Employee[]>([]);
+    const [errors, setErrors] = useState<{ national_id?: string; phone?: string; alternative_phone?: string }>({});
+
+    // FIX: The `validate` function now correctly receives a typed object, fixing the original error.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     const validate = (data: Partial<BeneficiaryFormData>) => {
         const newErrors: { national_id?: string; phone?: string; alternative_phone?: string } = {};
         if (data.national_id && !/^(2|3)\d{13}$/.test(data.national_id)) {
@@ -69,15 +103,44 @@ const BeneficiaryForm: React.FC<{
 
     useEffect(() => {
         if (beneficiaryToEdit) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+            // FIX: Destructure 'code' and 'notes' to match the BeneficiaryFormData type.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             const { notes, code, ...editableData } = beneficiaryToEdit;
             setFormData(editableData);
             if (beneficiaryToEdit.governorate) {
                 const initialCities = EGYPT_GOVERNORATES[beneficiaryToEdit.governorate] || [];
                 setCities(initialCities);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             }
         } else {
              setFormData({ name: '', national_id: '', join_date: '', phone: '', alternative_phone: '', governorate: '', city: '', area: '', detailed_address: '', job: '', family_members: 1, marital_status: 'أعزب', spouse_name: '', employee_national_id: '', is_blacklisted: false, researcher_receipt_date: '', research_submission_date: '' });
              setCities([]);
+<<<<<<< HEAD
+=======
+=======
+                
+                if (beneficiaryToEdit.city) {
+                    const matchingEmployees = employees.filter(emp => 
+                        !emp.is_frozen && emp.governorate === beneficiaryToEdit.governorate && emp.city === beneficiaryToEdit.city
+                    );
+                    setEligibleEmployees(matchingEmployees);
+                }
+            }
+        } else {
+            // FIX: Reset form data to a well-typed initial state object.
+             setFormData({ name: '', national_id: '', join_date: '', phone: '', alternative_phone: '', governorate: '', city: '', area: '', detailed_address: '', job: '', family_members: 1, marital_status: 'أعزب', spouse_name: '', employee_national_id: '', is_blacklisted: false, researcher_receipt_date: '', research_submission_date: '' });
+             setCities([]);
+             setEligibleEmployees([]);
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
         }
     }, [beneficiaryToEdit, employees]);
 
@@ -89,6 +152,30 @@ const BeneficiaryForm: React.FC<{
         }
     }, [formData.governorate]);
     
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    useEffect(() => {
+        if (formData.governorate && formData.city) {
+            const matchingEmployees = employees.filter(emp => !emp.is_frozen && emp.governorate === formData.governorate && emp.city === formData.city);
+            setEligibleEmployees(matchingEmployees);
+
+            if (matchingEmployees.length === 1) {
+                setFormData(prev => ({ ...prev, employee_national_id: matchingEmployees[0].national_id }));
+            } else {
+                if (!matchingEmployees.find(e => e.national_id === formData.employee_national_id) && formData.employee_national_id !== 'VOLUNTEER') {
+                    setFormData(prev => ({ ...prev, employee_national_id: '' }));
+                }
+            }
+        } else {
+            setEligibleEmployees([]);
+            setFormData(prev => ({ ...prev, employee_national_id: '' }));
+        }
+    }, [formData.governorate, formData.city, employees]);
+
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
         const target = e.target as HTMLInputElement;
@@ -96,6 +183,10 @@ const BeneficiaryForm: React.FC<{
         let newFormData = { ...formData };
 
         if (name === 'governorate') {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             // Reset city and employee when governorate changes
             newFormData = { ...newFormData, governorate: value, city: '', employee_national_id: '' };
         } else if (name === 'city') {
@@ -116,6 +207,14 @@ const BeneficiaryForm: React.FC<{
             } else {
                 newFormData = { ...newFormData, city: value, employee_national_id: '' };
             }
+<<<<<<< HEAD
+=======
+=======
+            newFormData = { ...newFormData, governorate: value, city: '', employee_national_id: '' };
+        } else if (name === 'city') {
+            newFormData = { ...newFormData, city: value, employee_national_id: '' };
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
         } else if (name === 'marital_status') {
             newFormData = { ...newFormData, marital_status: value as Beneficiary['marital_status'], spouse_name: value !== 'متزوج' ? '' : newFormData.spouse_name };
         } else if (type === 'checkbox') {
@@ -149,6 +248,10 @@ const BeneficiaryForm: React.FC<{
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <label htmlFor="name" className={labelClasses}>الاسم</label>
                     <input id="name" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="الاسم الكامل" required className={inputClasses}/>
                 </div>
@@ -174,18 +277,62 @@ const BeneficiaryForm: React.FC<{
                 <div>
                     <label htmlFor="governorate" className={labelClasses}>المحافظة</label>
                     <select id="governorate" name="governorate" value={formData.governorate} onChange={handleChange} required className={inputClasses}>
+<<<<<<< HEAD
+=======
+=======
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">الاسم</label>
+                    <input id="name" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="الاسم الكامل" required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+                <div>
+                    <label htmlFor="national_id" className="block text-sm font-medium text-gray-300 mb-1">الرقم القومي</label>
+                    <input id="national_id" type="text" name="national_id" value={formData.national_id} onChange={handleChange} placeholder="14 رقمًا" required className="w-full p-2 bg-gray-700 rounded" disabled={!!beneficiaryToEdit} />
+                    {errors.national_id && formData.national_id && <p className="text-red-500 text-sm mt-1">{errors.national_id}</p>}
+                </div>
+                <div>
+                    <label htmlFor="join_date" className="block text-sm font-medium text-gray-300 mb-1">تاريخ الانضمام</label>
+                    <input id="join_date" type="date" name="join_date" value={formData.join_date} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+                <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">رقم المحمول</label>
+                    <input id="phone" type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="11 رقمًا" required className="w-full p-2 bg-gray-700 rounded"/>
+                    {errors.phone && formData.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                </div>
+                 <div>
+                    <label htmlFor="alternative_phone" className="block text-sm font-medium text-gray-300 mb-1">رقم هاتف بديل (اختياري)</label>
+                    <input id="alternative_phone" type="text" name="alternative_phone" value={formData.alternative_phone || ''} onChange={handleChange} placeholder="11 رقمًا" className="w-full p-2 bg-gray-700 rounded"/>
+                    {errors.alternative_phone && formData.alternative_phone && <p className="text-red-500 text-sm mt-1">{errors.alternative_phone}</p>}
+                </div>
+                <div>
+                    <label htmlFor="governorate" className="block text-sm font-medium text-gray-300 mb-1">المحافظة</label>
+                    <select id="governorate" name="governorate" value={formData.governorate} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <option value="">اختر المحافظة</option>
                         {Object.keys(EGYPT_GOVERNORATES).map(gov => <option key={gov} value={gov}>{gov}</option>)}
                     </select>
                 </div>
                 <div>
+<<<<<<< HEAD
                     <label htmlFor="city" className={labelClasses}>المركز</label>
                     <select id="city" name="city" value={formData.city} onChange={handleChange} required className={inputClasses} disabled={!formData.governorate}>
+=======
+<<<<<<< HEAD
+                    <label htmlFor="city" className={labelClasses}>المركز</label>
+                    <select id="city" name="city" value={formData.city} onChange={handleChange} required className={inputClasses} disabled={!formData.governorate}>
+=======
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-300 mb-1">المركز</label>
+                    <select id="city" name="city" value={formData.city} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded" disabled={!formData.governorate}>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <option value="">اختر المركز</option>
                         {cities.map(city => <option key={city} value={city}>{city}</option>)}
                     </select>
                 </div>
                 <div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <label htmlFor="area" className={labelClasses}>المنطقة</label>
                     <input id="area" type="text" name="area" value={formData.area} onChange={handleChange} placeholder="اسم الشارع / القرية" required className={inputClasses}/>
                 </div>
@@ -204,11 +351,38 @@ const BeneficiaryForm: React.FC<{
                         <div>
                             <label htmlFor="research_submission_date" className={labelClasses}>تاريخ تسليم الباحث للبحث</label>
                             <input id="research_submission_date" type="date" name="research_submission_date" value={formData.research_submission_date || ''} onChange={handleChange} className={inputClasses}/>
+<<<<<<< HEAD
+=======
+=======
+                    <label htmlFor="area" className="block text-sm font-medium text-gray-300 mb-1">المنطقة</label>
+                    <input id="area" type="text" name="area" value={formData.area} onChange={handleChange} placeholder="اسم الشارع / القرية" required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+                <div className="md:col-span-2">
+                    <label htmlFor="detailed_address" className="block text-sm font-medium text-gray-300 mb-1">العنوان التفصيلي</label>
+                    <textarea id="detailed_address" name="detailed_address" value={formData.detailed_address} onChange={handleChange} placeholder="اكتب العنوان بالتفصيل..." required rows={2} className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+
+                <div className="md:col-span-2 border-t border-gray-700 pt-4 mt-2">
+                    <h3 className="text-lg font-semibold text-amber-400 mb-2">بيانات البحث الميداني</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label htmlFor="researcher_receipt_date" className="block text-sm font-medium text-gray-300 mb-1">تاريخ استلام الباحث للحالة</label>
+                            <input id="researcher_receipt_date" type="date" name="researcher_receipt_date" value={formData.researcher_receipt_date || ''} onChange={handleChange} className="w-full p-2 bg-gray-700 rounded"/>
+                        </div>
+                        <div>
+                            <label htmlFor="research_submission_date" className="block text-sm font-medium text-gray-300 mb-1">تاريخ تسليم الباحث للبحث</label>
+                            <input id="research_submission_date" type="date" name="research_submission_date" value={formData.research_submission_date || ''} onChange={handleChange} className="w-full p-2 bg-gray-700 rounded"/>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         </div>
                     </div>
                 </div>
 
                 <div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <label htmlFor="job" className={labelClasses}>الوظيفة</label>
                     <input id="job" type="text" name="job" value={formData.job} onChange={handleChange} placeholder="الوظيفة الحالية" required className={inputClasses}/>
                 </div>
@@ -219,6 +393,21 @@ const BeneficiaryForm: React.FC<{
                 <div>
                     <label htmlFor="marital_status" className={labelClasses}>الحالة الاجتماعية</label>
                     <select id="marital_status" name="marital_status" value={formData.marital_status} onChange={handleChange} required className={inputClasses}>
+<<<<<<< HEAD
+=======
+=======
+                    <label htmlFor="job" className="block text-sm font-medium text-gray-300 mb-1">الوظيفة</label>
+                    <input id="job" type="text" name="job" value={formData.job} onChange={handleChange} placeholder="الوظيفة الحالية" required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+                <div>
+                    <label htmlFor="family_members" className="block text-sm font-medium text-gray-300 mb-1">عدد أفراد الأسرة</label>
+                    <input id="family_members" type="number" name="family_members" min="1" value={formData.family_members} onChange={handleChange} placeholder="1" required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+                <div>
+                    <label htmlFor="marital_status" className="block text-sm font-medium text-gray-300 mb-1">الحالة الاجتماعية</label>
+                    <select id="marital_status" name="marital_status" value={formData.marital_status} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <option value="أعزب">أعزب</option>
                         <option value="متزوج">متزوج</option>
                         <option value="مطلق">مطلق</option>
@@ -227,6 +416,10 @@ const BeneficiaryForm: React.FC<{
                 </div>
                 {formData.marital_status === 'متزوج' && (
                     <div className="animate-fade-in-right">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <label htmlFor="spouse_name" className={labelClasses}>اسم الزوج/الزوجة</label>
                         <input id="spouse_name" type="text" name="spouse_name" value={formData.spouse_name || ''} onChange={handleChange} placeholder="الاسم الكامل للزوج/الزوجة" required={formData.marital_status === 'متزوج'} className={inputClasses}/>
                     </div>
@@ -244,6 +437,27 @@ const BeneficiaryForm: React.FC<{
                 </div>
                  <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-900/50 p-3 rounded-lg border border-gray-200 dark:border-gray-700 md:col-span-2">
                     <label htmlFor="is_blacklisted" className="font-bold text-red-600 dark:text-red-400">
+<<<<<<< HEAD
+=======
+=======
+                        <label htmlFor="spouse_name" className="block text-sm font-medium text-gray-300 mb-1">اسم الزوج/الزوجة</label>
+                        <input id="spouse_name" type="text" name="spouse_name" value={formData.spouse_name || ''} onChange={handleChange} placeholder="الاسم الكامل للزوج/الزوجة" required={formData.marital_status === 'متزوج'} className="w-full p-2 bg-gray-700 rounded"/>
+                    </div>
+                )}
+                 <div className="md:col-span-2">
+                    <label htmlFor="employee_national_id" className="block text-sm font-medium text-gray-300 mb-1">الموظف المسؤول</label>
+                    <select id="employee_national_id" name="employee_national_id" value={formData.employee_national_id} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded" disabled={!formData.city}>
+                         <option value="">
+                            {!formData.city ? 'اختر المحافظة والمركز أولاً' : 'اختر الموظف المسؤول أو متطوع'}
+                        </option>
+                        {eligibleEmployees.map(emp => <option key={emp.national_id} value={emp.national_id}>{emp.name}</option>)}
+                        <option value="VOLUNTEER">متطوع</option>
+                    </select>
+                </div>
+                 <div className="flex items-center justify-between bg-gray-900/50 p-3 rounded-lg border border-gray-700 md:col-span-2">
+                    <label htmlFor="is_blacklisted" className="font-bold text-red-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <i className="fas fa-ban mr-2"></i>
                         إضافة إلى القائمة السوداء
                     </label>
@@ -253,7 +467,15 @@ const BeneficiaryForm: React.FC<{
                         name="is_blacklisted"
                         checked={!!formData.is_blacklisted}
                         onChange={handleChange}
+<<<<<<< HEAD
                         className="form-checkbox h-6 w-6 text-red-600 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 rounded focus:ring-red-500 cursor-pointer"
+=======
+<<<<<<< HEAD
+                        className="form-checkbox h-6 w-6 text-red-600 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 rounded focus:ring-red-500 cursor-pointer"
+=======
+                        className="form-checkbox h-6 w-6 text-red-600 bg-gray-800 border-gray-600 rounded focus:ring-red-500 cursor-pointer"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     />
                 </div>
             </div>
@@ -292,6 +514,10 @@ const NotesModal: React.FC<{
             <div className="mb-4 max-h-60 overflow-y-auto space-y-2 pr-2">
                 {sortedNotes.length > 0 ? (
                     sortedNotes.map((note, index) => (
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <div key={index} className="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg">
                             <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{note.text}</p>
                             <p className="text-xs text-gray-500 dark:text-gray-400 text-left mt-1">{new Date(note.date).toLocaleString('ar-EG')}</p>
@@ -303,13 +529,37 @@ const NotesModal: React.FC<{
             </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="newNote" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">إضافة ملاحظة جديدة</label>
+<<<<<<< HEAD
+=======
+=======
+                        <div key={index} className="bg-gray-700 p-3 rounded-lg">
+                            <p className="text-gray-200 whitespace-pre-wrap">{note.text}</p>
+                            <p className="text-xs text-gray-400 text-left mt-1">{new Date(note.date).toLocaleString('ar-EG')}</p>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-gray-400 text-center py-4">لا توجد ملاحظات مسجلة.</p>
+                )}
+            </div>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="newNote" className="block text-sm font-medium text-gray-300 mb-1">إضافة ملاحظة جديدة</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 <textarea
                     id="newNote"
                     value={newNoteText}
                     onChange={(e) => setNewNoteText(e.target.value)}
                     placeholder="اكتب ملاحظتك هنا..."
                     rows={3}
+<<<<<<< HEAD
                     className="w-full p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600"
+=======
+<<<<<<< HEAD
+                    className="w-full p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600"
+=======
+                    className="w-full p-2 bg-gray-700 rounded"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     required
                 />
                 <div className="flex justify-end pt-4">
@@ -337,12 +587,28 @@ const BeneficiaryDetailsModal: React.FC<{
         <Modal isOpen={isOpen} onClose={onClose} title={`تفاصيل المستفيد: ${beneficiary.name}`}>
             <div className="space-y-4">
                  {beneficiary.is_blacklisted && (
+<<<<<<< HEAD
                     <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 font-bold p-3 rounded-lg text-center border border-red-300 dark:border-red-700">
+=======
+<<<<<<< HEAD
+                    <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 font-bold p-3 rounded-lg text-center border border-red-300 dark:border-red-700">
+=======
+                    <div className="bg-red-900 text-red-200 font-bold p-3 rounded-lg text-center border border-red-700">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <i className="fas fa-exclamation-triangle mr-2"></i>
                         هذا المستفيد في القائمة السوداء
                     </div>
                 )}
+<<<<<<< HEAD
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+=======
+<<<<<<< HEAD
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+=======
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 p-4 bg-gray-700/50 rounded-lg">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <div><strong>كود المستفيد:</strong> {beneficiary.code}</div>
                     <div><strong>الرقم القومي:</strong> {beneficiary.national_id}</div>
                     <div><strong>تاريخ الانضمام:</strong> {beneficiary.join_date}</div>
@@ -359,8 +625,18 @@ const BeneficiaryDetailsModal: React.FC<{
                     <div className="md:col-span-2"><strong>الموظف المسؤول:</strong> {employeeName}</div>
                 </div>
 
+<<<<<<< HEAD
                 <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
                      <h3 className="text-lg font-bold text-amber-600 dark:text-amber-400 mb-2">بيانات البحث الميداني</h3>
+=======
+<<<<<<< HEAD
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                     <h3 className="text-lg font-bold text-amber-600 dark:text-amber-400 mb-2">بيانات البحث الميداني</h3>
+=======
+                <div className="p-4 bg-gray-700/50 rounded-lg">
+                     <h3 className="text-lg font-bold text-amber-400 mb-2">بيانات البحث الميداني</h3>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                         <div><strong>تاريخ استلام الباحث:</strong> {beneficiary.researcher_receipt_date || 'لم يحدد'}</div>
                         <div><strong>تاريخ تسليم البحث:</strong> {beneficiary.research_submission_date || 'لم يحدد'}</div>
@@ -369,6 +645,10 @@ const BeneficiaryDetailsModal: React.FC<{
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 text-center">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <div className="bg-emerald-100 dark:bg-emerald-800 p-4 rounded-lg">
                         <p className="text-sm text-emerald-800 dark:text-emerald-200">عدد المساعدات</p>
                         <p className="text-2xl font-bold text-emerald-900 dark:text-white">{operationsCount}</p>
@@ -376,6 +656,18 @@ const BeneficiaryDetailsModal: React.FC<{
                     <div className="bg-purple-100 dark:bg-purple-800 p-4 rounded-lg">
                         <p className="text-sm text-purple-800 dark:text-purple-200">إجمالي قيمة المساعدات</p>
                         <p className="text-2xl font-bold text-purple-900 dark:text-white">{totalAmount.toLocaleString('ar-EG')} جنيه</p>
+<<<<<<< HEAD
+=======
+=======
+                    <div className="bg-emerald-800 p-4 rounded-lg">
+                        <p className="text-sm text-emerald-200">عدد المساعدات</p>
+                        <p className="text-2xl font-bold">{operationsCount}</p>
+                    </div>
+                    <div className="bg-purple-800 p-4 rounded-lg">
+                        <p className="text-sm text-purple-200">إجمالي قيمة المساعدات</p>
+                        <p className="text-2xl font-bold">{totalAmount.toLocaleString('ar-EG')} جنيه</p>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     </div>
                 </div>
             </div>
@@ -397,7 +689,15 @@ const EmployeeDetailsModal: React.FC<{
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={`تفاصيل الموظف: ${employee.name}`}>
             <div className="space-y-4">
+<<<<<<< HEAD
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+=======
+<<<<<<< HEAD
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+=======
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 p-4 bg-gray-700/50 rounded-lg">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <div><strong>الرقم القومي:</strong> {employee.national_id}</div>
                     <div><strong>رقم المحمول:</strong> {employee.phone}</div>
                     <div><strong>المحافظة:</strong> {employee.governorate}</div>
@@ -437,7 +737,15 @@ const Pagination: React.FC<{
                     className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                         currentPage === number 
                         ? 'bg-emerald-500 text-white' 
+<<<<<<< HEAD
                         : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+=======
+<<<<<<< HEAD
+                        : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+=======
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     }`}
                 >
                     {number}
@@ -471,9 +779,18 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
     const [selectedIds, setSelectedIds] = useState(new Set<string>());
     const headerCheckboxRef = useRef<HTMLInputElement>(null);
     const ITEMS_PER_PAGE = 10;
+<<<<<<< HEAD
     
     const inputFilterClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500";
     const labelFilterClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+=======
+<<<<<<< HEAD
+    
+    const inputFilterClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500";
+    const labelFilterClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 
 
     const operationCounts = useMemo(() => {
@@ -682,9 +999,22 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
     };
 
     const handleAdd = (beneficiary: BeneficiaryFormData) => {
+<<<<<<< HEAD
         if (beneficiaries.some(b => b.national_id === beneficiary.national_id)) {
             alert('لا يمكن إضافة مستفيد جديد: الرقم القومي مسجل بالفعل لمستفيد آخر.');
             return;
+=======
+<<<<<<< HEAD
+        if (beneficiaries.some(b => b.national_id === beneficiary.national_id)) {
+            alert('لا يمكن إضافة مستفيد جديد: الرقم القومي مسجل بالفعل لمستفيد آخر.');
+            return;
+=======
+        // Add a definitive check here to prevent adding a duplicate national ID.
+        if (beneficiaries.some(b => b.national_id === beneficiary.national_id)) {
+            alert('لا يمكن إضافة مستفيد جديد: الرقم القومي مسجل بالفعل لمستفيد آخر.');
+            return; // Stop the function execution.
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
         }
 
         const numericCodes = beneficiaries
@@ -782,7 +1112,15 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
 
     const ThSortable: React.FC<{ sortKey: BeneficiarySortKey; label: string; }> = ({ sortKey, label }) => (
         <th className="p-3">
+<<<<<<< HEAD
             <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+<<<<<<< HEAD
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-300 hover:text-white transition-colors focus:outline-none">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 <span>{label}</span>
                 <i className={`fas ${getSortDirectionIcon(sortKey)} mr-2`}></i>
             </button>
@@ -816,78 +1154,182 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
                 )}
             </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md my-4">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div>
                         <label htmlFor="govFilter" className={labelFilterClasses}>فلترة حسب المحافظة</label>
+<<<<<<< HEAD
+=======
+=======
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md my-4">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <div>
+                        <label htmlFor="govFilter" className="block text-sm font-medium text-gray-300 mb-1">فلترة حسب المحافظة</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <select
                             id="govFilter"
                             value={filterGovernorate}
                             onChange={handleGovernorateFilterChange}
+<<<<<<< HEAD
                             className={inputFilterClasses}
+=======
+<<<<<<< HEAD
+                            className={inputFilterClasses}
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         >
                             <option value="">كل المحافظات</option>
                             {Object.keys(EGYPT_GOVERNORATES).map(gov => <option key={gov} value={gov}>{gov}</option>)}
                         </select>
                     </div>
                     <div>
+<<<<<<< HEAD
                         <label htmlFor="cityFilter" className={labelFilterClasses}>فلترة حسب المركز</label>
+=======
+<<<<<<< HEAD
+                        <label htmlFor="cityFilter" className={labelFilterClasses}>فلترة حسب المركز</label>
+=======
+                        <label htmlFor="cityFilter" className="block text-sm font-medium text-gray-300 mb-1">فلترة حسب المركز</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <select
                             id="cityFilter"
                             value={filterCity}
                             onChange={handleCityFilterChange}
                             disabled={!filterGovernorate}
+<<<<<<< HEAD
                             className={`${inputFilterClasses} disabled:bg-gray-200 dark:disabled:bg-gray-600 disabled:cursor-not-allowed`}
+=======
+<<<<<<< HEAD
+                            className={`${inputFilterClasses} disabled:bg-gray-200 dark:disabled:bg-gray-600 disabled:cursor-not-allowed`}
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white disabled:bg-gray-600 disabled:cursor-not-allowed"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         >
                             <option value="">كل المراكز</option>
                             {filterCities.map(city => <option key={city} value={city}>{city}</option>)}
                         </select>
                     </div>
                     <div className="md:col-span-1">
+<<<<<<< HEAD
                         <label htmlFor="searchFilter" className={labelFilterClasses}>بحث بالاسم/الرقم القومي/الكود</label>
+=======
+<<<<<<< HEAD
+                        <label htmlFor="searchFilter" className={labelFilterClasses}>بحث بالاسم/الرقم القومي/الكود</label>
+=======
+                        <label htmlFor="searchFilter" className="block text-sm font-medium text-gray-300 mb-1">بحث بالاسم/الرقم القومي/الكود</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <input
                             id="searchFilter"
                             type="text"
                             placeholder="ابحث هنا..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             className={inputFilterClasses}
                         />
                     </div>
                      <div>
                         <label htmlFor="startDateFilter" className={labelFilterClasses}>من تاريخ انضمام</label>
+<<<<<<< HEAD
+=======
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white"
+                        />
+                    </div>
+                     <div>
+                        <label htmlFor="startDateFilter" className="block text-sm font-medium text-gray-300 mb-1">من تاريخ انضمام</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <input
                             id="startDateFilter"
                             type="date"
                             value={filterStartDate}
                             onChange={(e) => setFilterStartDate(e.target.value)}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             className={inputFilterClasses}
                         />
                     </div>
                     <div>
                         <label htmlFor="endDateFilter" className={labelFilterClasses}>إلى تاريخ انضمام</label>
+<<<<<<< HEAD
+=======
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="endDateFilter" className="block text-sm font-medium text-gray-300 mb-1">إلى تاريخ انضمام</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <input
                             id="endDateFilter"
                             type="date"
                             value={filterEndDate}
                             onChange={(e) => setFilterEndDate(e.target.value)}
+<<<<<<< HEAD
                             className={inputFilterClasses}
+=======
+<<<<<<< HEAD
+                            className={inputFilterClasses}
+=======
+                            className="w-full p-2 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         />
                     </div>
                 </div>
             </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
                 <table className="w-full text-right">
                     <thead className="bg-gray-50 dark:bg-gray-700">
                         <tr>
                             <th className="p-3 text-center w-12">
                                 <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+<<<<<<< HEAD
+=======
+=======
+            <div className="bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                <table className="w-full text-right">
+                    <thead className="bg-gray-700">
+                        <tr>
+                            <th className="p-3 text-center w-12">
+                                <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             </th>
                             <ThSortable sortKey="code" label="كود المستفيد" />
                             <ThSortable sortKey="name" label="الاسم" />
                             <ThSortable sortKey="researchStatus" label="حالة البحث" />
+<<<<<<< HEAD
                             <th className="p-3 font-semibold text-gray-700 dark:text-gray-300 text-right">المحمول</th>
+=======
+<<<<<<< HEAD
+                            <th className="p-3 font-semibold text-gray-700 dark:text-gray-300 text-right">المحمول</th>
+=======
+                            <th className="p-3 font-semibold text-gray-300 text-right">المحمول</th>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             <th className="p-3 text-right">إجراءات</th>
                         </tr>
                     </thead>
@@ -896,6 +1338,10 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
                             const noteCount = ben.notes?.length || 0;
                             const count = operationCounts[ben.national_id] || 0;
                             const researchStatus = ben.research_submission_date ? 'تم البحث' : (ben.researcher_receipt_date ? 'تحت البحث' : 'لم يبدأ');
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             const researchStatusClass = ben.research_submission_date ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-800 dark:text-emerald-200' : (ben.researcher_receipt_date ? 'bg-amber-100 text-amber-800 dark:bg-amber-800 dark:text-amber-200' : 'bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-300');
 
                             return (
@@ -908,6 +1354,25 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
                                     </td>
                                     <td className="p-3 text-right">{ben.code}</td>
                                     <td className={`p-3 text-right cursor-pointer ${ben.is_blacklisted ? '' : 'text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300'}`} onClick={() => openDetailsModal(ben)}>
+<<<<<<< HEAD
+=======
+=======
+                            const researchStatusClass = ben.research_submission_date ? 'bg-emerald-800 text-emerald-200' : (ben.researcher_receipt_date ? 'bg-amber-800 text-amber-200' : 'bg-gray-600 text-gray-300');
+
+                            return (
+                                <tr key={ben.national_id} className={`border-b border-gray-700 transition-colors ${
+                                    selectedIds.has(ben.national_id) ? 'bg-emerald-900/50' :
+                                    ben.is_blacklisted 
+                                        ? 'bg-red-900/60 hover:bg-red-800/60 text-gray-400' 
+                                        : `hover:bg-gray-700/50 ${count >= 3 ? 'bg-amber-900/50' : ''}`
+                                }`}>
+                                     <td className="p-3 text-center">
+                                        <input type="checkbox" checked={selectedIds.has(ben.national_id)} onChange={() => handleSelect(ben.national_id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+                                    </td>
+                                    <td className="p-3 text-right">{ben.code}</td>
+                                    <td className={`p-3 text-right cursor-pointer ${ben.is_blacklisted ? 'text-red-400 font-bold' : 'text-emerald-400 hover:text-emerald-300'}`} onClick={() => openDetailsModal(ben)}>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                         {ben.is_blacklisted && <i className="fas fa-ban ml-2" title="في القائمة السوداء"></i>}
                                         {ben.name}
                                     </td>
@@ -922,7 +1387,15 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
                                         <Button variant="secondary" onClick={() => openNotesModal(ben)} title="الملاحظات" className="relative">
                                             <i className="fas fa-comment-dots"></i>
                                             {noteCount > 0 && (
+<<<<<<< HEAD
                                                 <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center border-2 border-white dark:border-gray-800">
+=======
+<<<<<<< HEAD
+                                                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center border-2 border-white dark:border-gray-800">
+=======
+                                                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center border-2 border-gray-800">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                                     {noteCount}
                                                 </span>
                                             )}
@@ -934,7 +1407,15 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
                     </tbody>
                 </table>
                  {sortedBeneficiaries.length === 0 && (
+<<<<<<< HEAD
                     <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+<<<<<<< HEAD
+                    <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+                    <div className="text-center p-6 text-gray-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         لا توجد بيانات تطابق معايير البحث الحالية.
                     </div>
                 )}
@@ -985,4 +1466,12 @@ export const BeneficiariesPage: React.FC<BeneficiariesPageProps> = ({ beneficiar
             />
         </div>
     );
+<<<<<<< HEAD
 };
+=======
+<<<<<<< HEAD
+};
+=======
+};
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e

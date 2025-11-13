@@ -1,5 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "Copy of Backup Charity Organization  13-11",
+=======
+<<<<<<< HEAD
+  "name": "Copy of Backup Charity Organization  13-11",
+=======
+  "name": "Charity Organization ",
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
   "description": "A comprehensive dashboard to manage employees, beneficiaries, assistance types, and operations for a charity organization. It includes features for CRUD operations, searching, and exporting data to Excel.",
   "requestFramePermissions": []
 }

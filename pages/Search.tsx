@@ -48,7 +48,15 @@ const Pagination: React.FC<{
                     className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                         currentPage === number 
                         ? 'bg-emerald-500 text-white' 
+<<<<<<< HEAD
                         : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+=======
+<<<<<<< HEAD
+                        : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+=======
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     }`}
                 >
                     {number}
@@ -188,7 +196,15 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
 
     const ThBeneficiarySortable: React.FC<{ sortKey: BeneficiarySortKey; label: string; }> = ({ sortKey, label }) => (
         <th className="p-3">
+<<<<<<< HEAD
             <button onClick={() => requestBeneficiarySort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+<<<<<<< HEAD
+            <button onClick={() => requestBeneficiarySort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+            <button onClick={() => requestBeneficiarySort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-300 hover:text-white transition-colors focus:outline-none">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 <span>{label}</span>
                 <i className={`fas ${getBeneficiarySortIcon(sortKey)} mr-2`}></i>
             </button>
@@ -197,7 +213,15 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
     
     const ThOperationSortable: React.FC<{ sortKey: OperationSortKey; label: string; }> = ({ sortKey, label }) => (
         <th className="p-3">
+<<<<<<< HEAD
             <button onClick={() => requestOperationSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+<<<<<<< HEAD
+            <button onClick={() => requestOperationSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+            <button onClick={() => requestOperationSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-300 hover:text-white transition-colors focus:outline-none">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 <span>{label}</span>
                 <i className={`fas ${getOperationSortIcon(sortKey)} mr-2`}></i>
             </button>
@@ -207,10 +231,23 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
     return (
         <div>
             <Header title="بحث" icon="fa-search" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
                     <div className="flex flex-col">
                         <label className="mb-2 text-gray-700 dark:text-gray-300">نوع البحث</label>
+<<<<<<< HEAD
+=======
+=======
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                    <div className="flex flex-col">
+                        <label className="mb-2 text-gray-300">نوع البحث</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <select
                             value={searchType}
                             onChange={(e) => {
@@ -219,20 +256,44 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
                                 setSearchTerm('');
                                 setSelectedBeneficiary(null);
                             }}
+<<<<<<< HEAD
                             className="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+<<<<<<< HEAD
+                            className="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+                            className="w-full p-3 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         >
                             <option value="beneficiary">بحث عن مستفيد (بالاسم/الرقم القومي/المحمول/الكود)</option>
                             <option value="employee">بحث بالموظف المسؤول (بالاسم/المحمول)</option>
                         </select>
                     </div>
                     <div className="flex flex-col md:col-span-1">
+<<<<<<< HEAD
                         <label className="mb-2 text-gray-700 dark:text-gray-300">كلمة البحث</label>
+=======
+<<<<<<< HEAD
+                        <label className="mb-2 text-gray-700 dark:text-gray-300">كلمة البحث</label>
+=======
+                        <label className="mb-2 text-gray-300">كلمة البحث</label>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <input
                             type="text"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="أدخل كلمة البحث هنا..."
+<<<<<<< HEAD
                             className="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+<<<<<<< HEAD
+                            className="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500"
+=======
+                            className="w-full p-3 bg-gray-700 rounded text-white"
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                         />
                     </div>
@@ -241,9 +302,21 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
             </div>
 
             <h2 className="text-2xl font-bold mb-4">نتائج البحث ({results.length})</h2>
+<<<<<<< HEAD
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
                 <table className="w-full text-right">
                     <thead className="bg-gray-50 dark:bg-gray-700">
+=======
+<<<<<<< HEAD
+            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                <table className="w-full text-right">
+                    <thead className="bg-gray-50 dark:bg-gray-700">
+=======
+            <div className="bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                <table className="w-full text-right">
+                    <thead className="bg-gray-700">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <tr>
                             <ThBeneficiarySortable sortKey="code" label="كود المستفيد" />
                             <ThBeneficiarySortable sortKey="name" label="اسم المستفيد" />
@@ -258,7 +331,15 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
                              return (
                                 <tr 
                                     key={ben.national_id} 
+<<<<<<< HEAD
                                     className={`border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors ${selectedBeneficiary?.national_id === ben.national_id ? 'bg-emerald-100 dark:bg-emerald-900' : ''}`}
+=======
+<<<<<<< HEAD
+                                    className={`border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors ${selectedBeneficiary?.national_id === ben.national_id ? 'bg-emerald-100 dark:bg-emerald-900' : ''}`}
+=======
+                                    className={`border-b border-gray-700 hover:bg-gray-700/50 cursor-pointer transition-colors ${selectedBeneficiary?.national_id === ben.national_id ? 'bg-emerald-900' : ''}`}
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                     onClick={() => setSelectedBeneficiary(ben)}
                                 >
                                     <td className="p-3">{ben.code}</td>
@@ -270,7 +351,15 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
                             )
                         }) : (
                             <tr>
+<<<<<<< HEAD
                                 <td colSpan={5} className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+<<<<<<< HEAD
+                                <td colSpan={5} className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+                                <td colSpan={5} className="text-center p-6 text-gray-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                     {searchTerm.trim() && results.length === 0 ? 'لا توجد نتائج تطابق بحثك.' : 'يرجى إدخال كلمة بحث والضغط على زر البحث للبدء.'}
                                 </td>
                             </tr>
@@ -283,12 +372,27 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
             {selectedBeneficiary && (
                 <div className="mt-10 animate-fade-in">
                     <h2 className="text-2xl font-bold mb-4 flex items-center">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <i className="fas fa-history text-emerald-500 dark:text-emerald-400 mr-3"></i>
                         سجل عمليات المستفيد: {selectedBeneficiary.name}
                     </h2>
                     <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
                         <table className="w-full text-right">
                             <thead className="bg-gray-50 dark:bg-gray-700">
+<<<<<<< HEAD
+=======
+=======
+                        <i className="fas fa-history text-emerald-400 mr-3"></i>
+                        سجل عمليات المستفيد: {selectedBeneficiary.name}
+                    </h2>
+                    <div className="bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                        <table className="w-full text-right">
+                            <thead className="bg-gray-700">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                 <tr>
                                     <ThOperationSortable sortKey="code" label="كود العملية" />
                                     <ThOperationSortable sortKey="assistanceName" label="نوع المساعدة" />
@@ -302,7 +406,15 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
                                 {beneficiaryOperations.length > 0 ? beneficiaryOperations.map(op => {
                                     const assistance = assistanceTypes.find(a => a.id === op.assistance_id);
                                     return (
+<<<<<<< HEAD
                                         <tr key={op.id} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+=======
+<<<<<<< HEAD
+                                        <tr key={op.id} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+=======
+                                        <tr key={op.id} className="border-b border-gray-700 hover:bg-gray-700/50">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                             <td className="p-3">{op.code}</td>
                                             <td className="p-3">{assistance?.name || 'غير معروف'}</td>
                                             <td className="p-3">{op.amount.toLocaleString('ar-EG')}</td>
@@ -313,7 +425,15 @@ export const SearchPage: React.FC<SearchPageProps> = ({ beneficiaries, employees
                                     );
                                 }) : (
                                     <tr>
+<<<<<<< HEAD
                                         <td colSpan={6} className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+<<<<<<< HEAD
+                                        <td colSpan={6} className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+                                        <td colSpan={6} className="text-center p-6 text-gray-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                             لا توجد عمليات مسجلة لهذا المستفيد.
                                         </td>
                                     </tr>

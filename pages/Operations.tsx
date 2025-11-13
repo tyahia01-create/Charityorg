@@ -1,5 +1,13 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+<<<<<<< HEAD
 import type { Operation, Beneficiary, AssistanceType, OperationStatus } from '../types';
+=======
+<<<<<<< HEAD
+import type { Operation, Beneficiary, AssistanceType, OperationStatus } from '../types';
+=======
+import type { Operation, Beneficiary, AssistanceType, OperationStatus, Employee } from '../types';
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 import { Header } from '../components/Header';
 import { Button } from '../components/Button';
 import { Modal } from '../components/Modal';
@@ -19,6 +27,13 @@ interface OperationsPageProps {
     setOperations: React.Dispatch<React.SetStateAction<Operation[]>>;
     beneficiaries: Beneficiary[];
     assistanceTypes: AssistanceType[];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    employees: Employee[];
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     showToast: (message: string, type?: 'success' | 'info', copyText?: string) => void;
 }
 
@@ -37,6 +52,13 @@ const getInitialFormData = (operationToEdit: Operation | null = null) => {
         pending_date: '',
         disbursement_status: undefined,
         disbursement_date: '',
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+        employee_national_id: '',
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     };
     if (operationToEdit) {
         const { code, id, ...editableData } = operationToEdit;
@@ -56,6 +78,10 @@ const OperationForm: React.FC<{
     operationToEdit: Operation | null;
     beneficiaries: Beneficiary[];
     assistanceTypes: AssistanceType[];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 }> = ({ onSubmit, onClose, operationToEdit, beneficiaries, assistanceTypes }) => {
     const [formData, setFormData] = useState(getInitialFormData(operationToEdit));
     const [beneficiaryName, setBeneficiaryName] = useState('');
@@ -64,18 +90,67 @@ const OperationForm: React.FC<{
     const inputClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-white";
     const labelClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
 
+<<<<<<< HEAD
+=======
+=======
+    employees: Employee[];
+}> = ({ onSubmit, onClose, operationToEdit, beneficiaries, assistanceTypes, employees }) => {
+    const [formData, setFormData] = useState(getInitialFormData(operationToEdit));
+    const [beneficiaryName, setBeneficiaryName] = useState('');
+    const [beneficiaryError, setBeneficiaryError] = useState('');
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 
     useEffect(() => {
         if (formData.beneficiary_national_id) {
             const beneficiary = beneficiaries.find(b => b.national_id === formData.beneficiary_national_id);
+<<<<<<< HEAD
             if (beneficiary) setBeneficiaryName(beneficiary.name);
         }
     }, [formData.beneficiary_national_id, beneficiaries]);
+=======
+<<<<<<< HEAD
+            if (beneficiary) setBeneficiaryName(beneficiary.name);
+        }
+    }, [formData.beneficiary_national_id, beneficiaries]);
+=======
+            if (beneficiary) {
+                setBeneficiaryName(beneficiary.name);
+                 if (beneficiary.is_blacklisted) {
+                    setBeneficiaryError('هذا المستفيد محظور ولا يمكن إضافة عمليات له.');
+                    setFormData(prev => ({ ...prev, employee_national_id: '' }));
+                    return;
+                }
+                setBeneficiaryError('');
+
+                const matchingEmployees = employees.filter(emp => 
+                    !emp.is_frozen && emp.governorate === beneficiary.governorate && emp.city === beneficiary.city
+                );
+
+                if (matchingEmployees.length === 1) {
+                    setFormData(prev => ({...prev, employee_national_id: matchingEmployees[0].national_id}));
+                } else {
+                     setFormData(prev => ({...prev, employee_national_id: 'VOLUNTEER'}));
+                }
+
+            } else {
+                setBeneficiaryName('');
+                setBeneficiaryError(formData.beneficiary_national_id.trim() ? 'الرقم القومي للمستفيد غير موجود.' : '');
+                setFormData(prev => ({ ...prev, employee_national_id: '' }));
+            }
+        }
+    }, [formData.beneficiary_national_id, beneficiaries, employees]);
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         
         let updatedFormData = { ...formData, [name]: value };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
 
         if (name === 'beneficiary_national_id') {
             const foundBeneficiary = beneficiaries.find(b => b.national_id === value);
@@ -91,6 +166,11 @@ const OperationForm: React.FC<{
                 setBeneficiaryError(value.trim() ? 'الرقم القومي للمستفيد غير موجود.' : '');
             }
         }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
         
         if (name === 'status') {
              updatedFormData = {
@@ -131,6 +211,13 @@ const OperationForm: React.FC<{
             pending_date: formData.status === 'معلقة' ? formData.pending_date : undefined,
             disbursement_status: formData.status === 'مقبوله' ? formData.disbursement_status : undefined,
             disbursement_date: formData.status === 'مقبوله' && formData.disbursement_status ? formData.disbursement_date : undefined,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+            employee_national_id: formData.employee_national_id,
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
         };
         onSubmit(data);
     };
@@ -139,7 +226,15 @@ const OperationForm: React.FC<{
         if (beneficiaryError) return true;
         
         const foundBeneficiary = beneficiaries.find(b => b.national_id === formData.beneficiary_national_id);
+<<<<<<< HEAD
         if (!foundBeneficiary || !formData.beneficiary_national_id || !formData.assistance_id || formData.amount <= 0 || !formData.date || !formData.spending_entity || !formData.status) {
+=======
+<<<<<<< HEAD
+        if (!foundBeneficiary || !formData.beneficiary_national_id || !formData.assistance_id || formData.amount <= 0 || !formData.date || !formData.spending_entity || !formData.status) {
+=======
+        if (!foundBeneficiary || !formData.beneficiary_national_id || !formData.assistance_id || formData.amount <= 0 || !formData.date || !formData.spending_entity || !formData.status || !formData.employee_national_id) {
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             return true;
         }
         if (formData.status === 'مقبوله' && !formData.acceptance_date) {
@@ -158,6 +253,10 @@ const OperationForm: React.FC<{
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <label htmlFor="beneficiary_national_id" className={labelClasses}>الرقم القومي للمستفيد</label>
                     <input id="beneficiary_national_id" type="text" name="beneficiary_national_id" value={formData.beneficiary_national_id} onChange={handleChange} placeholder="أدخل 14 رقمًا" required className={inputClasses} disabled={!!operationToEdit}/>
                     {beneficiaryError && <p className="text-red-500 text-sm mt-1">{beneficiaryError}</p>}
@@ -166,11 +265,28 @@ const OperationForm: React.FC<{
                 <div>
                     <label htmlFor="assistance_id" className={labelClasses}>نوع المساعدة</label>
                     <select id="assistance_id" name="assistance_id" value={formData.assistance_id} onChange={handleChange} required className={inputClasses}>
+<<<<<<< HEAD
+=======
+=======
+                    <label htmlFor="beneficiary_national_id" className="block text-sm font-medium text-gray-300 mb-1">الرقم القومي للمستفيد</label>
+                    <input id="beneficiary_national_id" type="text" name="beneficiary_national_id" value={formData.beneficiary_national_id} onChange={handleChange} placeholder="أدخل 14 رقمًا" required className="w-full p-2 bg-gray-700 rounded" disabled={!!operationToEdit}/>
+                    {beneficiaryError && <p className="text-red-500 text-sm mt-1">{beneficiaryError}</p>}
+                    {beneficiaryName && !beneficiaryError && <p className="text-emerald-400 text-sm mt-1">اسم المستفيد: {beneficiaryName}</p>}
+                </div>
+                <div>
+                    <label htmlFor="assistance_id" className="block text-sm font-medium text-gray-300 mb-1">نوع المساعدة</label>
+                    <select id="assistance_id" name="assistance_id" value={formData.assistance_id} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <option value="">اختر نوع المساعدة</option>
                         {assistanceTypes.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
                     </select>
                 </div>
                 <div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <label htmlFor="amount" className={labelClasses}>قيمة المساعدة</label>
                     <input id="amount" type="number" name="amount" value={formData.amount} onChange={handleChange} placeholder="قيمة المساعدة" required className={inputClasses}/>
                 </div>
@@ -194,25 +310,97 @@ const OperationForm: React.FC<{
                      <div>
                         <label htmlFor="status" className={labelClasses}>حالة العملية</label>
                         <select id="status" name="status" value={formData.status} onChange={handleChange} required className={inputClasses}>
+<<<<<<< HEAD
+=======
+=======
+                    <label htmlFor="amount" className="block text-sm font-medium text-gray-300 mb-1">قيمة المساعدة</label>
+                    <input id="amount" type="number" name="amount" value={formData.amount} onChange={handleChange} placeholder="قيمة المساعدة" required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+                <div>
+                    <label htmlFor="spending_entity" className="block text-sm font-medium text-gray-300 mb-1">جهة الإنفاق</label>
+                    <input id="spending_entity" type="text" name="spending_entity" value={formData.spending_entity} onChange={handleChange} placeholder="جهة الإنفاق" required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+                <div>
+                     <label htmlFor="employee_national_id" className="block text-sm font-medium text-gray-300 mb-1">الموظف المسؤول</label>
+                    <select 
+                        id="employee_national_id" 
+                        name="employee_national_id" 
+                        value={formData.employee_national_id} 
+                        onChange={handleChange} 
+                        required 
+                        className="w-full p-2 bg-gray-700 rounded"
+                        disabled={!formData.beneficiary_national_id || !!beneficiaryError}
+                    >
+                        <option value="">
+                            {!formData.beneficiary_national_id || beneficiaryError ? 'اختر المستفيد أولاً' : 'اختر الموظف'}
+                        </option>
+                        {employees.filter(emp => !emp.is_frozen).map(emp => (
+                            <option key={emp.national_id} value={emp.national_id}>{emp.name}</option>
+                        ))}
+                        <option value="VOLUNTEER">متطوع</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="date" className="block text-sm font-medium text-gray-300 mb-1">تاريخ تقديم الطلب</label>
+                    <input id="date" type="date" name="date" value={formData.date} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded"/>
+                </div>
+            </div>
+            
+            <div className="space-y-4 p-4 border border-gray-600 rounded-lg bg-gray-900/50 mt-4">
+                <h3 className="text-lg font-semibold text-amber-400">تفاصيل قرار اللجنة وحالة الطلب</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label htmlFor="committee_number" className="block text-sm font-medium text-gray-300 mb-1">رقم اللجنة</label>
+                        <input id="committee_number" type="text" name="committee_number" value={formData.committee_number || ''} onChange={handleChange} placeholder="رقم اللجنة" className="w-full p-2 bg-gray-700 rounded"/>
+                    </div>
+                     <div>
+                        <label htmlFor="status" className="block text-sm font-medium text-gray-300 mb-1">حالة العملية</label>
+                        <select id="status" name="status" value={formData.status} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             <option value="معلقة">معلقة</option>
                             <option value="مقبوله">مقبوله</option>
                             <option value="مرفوضه">مرفوضه</option>
                         </select>
                     </div>
                     <div className="md:col-span-2">
+<<<<<<< HEAD
                         <label htmlFor="committee_decision_description" className={labelClasses}>وصف قرار اللجنة</label>
                         <textarea id="committee_decision_description" name="committee_decision_description" value={formData.committee_decision_description || ''} onChange={handleChange} placeholder="اكتب وصفًا موجزًا لقرار اللجنة..." className={inputClasses} rows={2}></textarea>
+=======
+<<<<<<< HEAD
+                        <label htmlFor="committee_decision_description" className={labelClasses}>وصف قرار اللجنة</label>
+                        <textarea id="committee_decision_description" name="committee_decision_description" value={formData.committee_decision_description || ''} onChange={handleChange} placeholder="اكتب وصفًا موجزًا لقرار اللجنة..." className={inputClasses} rows={2}></textarea>
+=======
+                        <label htmlFor="committee_decision_description" className="block text-sm font-medium text-gray-300 mb-1">وصف قرار اللجنة</label>
+                        <textarea id="committee_decision_description" name="committee_decision_description" value={formData.committee_decision_description || ''} onChange={handleChange} placeholder="اكتب وصفًا موجزًا لقرار اللجنة..." className="w-full p-2 bg-gray-700 rounded" rows={2}></textarea>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     </div>
                 </div>
 
                 {formData.status === 'معلقة' && (
                     <div className="animate-fade-in-right">
+<<<<<<< HEAD
                         <label htmlFor="pending_date" className={labelClasses}>تاريخ التعليق</label>
                         <input id="pending_date" type="date" name="pending_date" value={formData.pending_date || ''} onChange={handleChange} required className={inputClasses}/>
+=======
+<<<<<<< HEAD
+                        <label htmlFor="pending_date" className={labelClasses}>تاريخ التعليق</label>
+                        <input id="pending_date" type="date" name="pending_date" value={formData.pending_date || ''} onChange={handleChange} required className={inputClasses}/>
+=======
+                        <label htmlFor="pending_date" className="block text-sm font-medium text-gray-300 mb-1">تاريخ التعليق</label>
+                        <input id="pending_date" type="date" name="pending_date" value={formData.pending_date || ''} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded"/>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     </div>
                 )}
                 
                 {formData.status === 'مقبوله' && (
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     <div className="space-y-4 pt-2 border-t border-gray-200 dark:border-gray-700 mt-2 animate-fade-in-right">
                         <h4 className="text-md font-semibold text-emerald-600 dark:text-emerald-400">تفاصيل القبول والصرف</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -223,6 +411,21 @@ const OperationForm: React.FC<{
                             <div>
                                 <label htmlFor="disbursement_status" className={labelClasses}>حالة الصرف</label>
                                 <select id="disbursement_status" name="disbursement_status" value={formData.disbursement_status || ''} onChange={handleChange} className={inputClasses}>
+<<<<<<< HEAD
+=======
+=======
+                    <div className="space-y-4 pt-2 border-t border-gray-700 mt-2 animate-fade-in-right">
+                        <h4 className="text-md font-semibold text-emerald-400">تفاصيل القبول والصرف</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="acceptance_date" className="block text-sm font-medium text-gray-300 mb-1">تاريخ القبول</label>
+                                <input id="acceptance_date" type="date" name="acceptance_date" value={formData.acceptance_date} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded"/>
+                            </div>
+                            <div>
+                                <label htmlFor="disbursement_status" className="block text-sm font-medium text-gray-300 mb-1">حالة الصرف</label>
+                                <select id="disbursement_status" name="disbursement_status" value={formData.disbursement_status || ''} onChange={handleChange} className="w-full p-2 bg-gray-700 rounded">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                     <option value="">اختر حالة الصرف (اختياري)</option>
                                     <option value="جاري التنفيذ">جاري التنفيذ</option>
                                     <option value="تم الصرف">تم الصرف</option>
@@ -230,8 +433,18 @@ const OperationForm: React.FC<{
                             </div>
                             {formData.disbursement_status && (
                                 <div>
+<<<<<<< HEAD
                                     <label htmlFor="disbursement_date" className={labelClasses}>تاريخ الصرف</label>
                                     <input id="disbursement_date" type="date" name="disbursement_date" value={formData.disbursement_date} onChange={handleChange} required className={inputClasses}/>
+=======
+<<<<<<< HEAD
+                                    <label htmlFor="disbursement_date" className={labelClasses}>تاريخ الصرف</label>
+                                    <input id="disbursement_date" type="date" name="disbursement_date" value={formData.disbursement_date} onChange={handleChange} required className={inputClasses}/>
+=======
+                                    <label htmlFor="disbursement_date" className="block text-sm font-medium text-gray-300 mb-1">تاريخ الصرف</label>
+                                    <input id="disbursement_date" type="date" name="disbursement_date" value={formData.disbursement_date} onChange={handleChange} required className="w-full p-2 bg-gray-700 rounded"/>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                 </div>
                             )}
                         </div>
@@ -240,8 +453,18 @@ const OperationForm: React.FC<{
             </div>
 
             <div className="md:col-span-2">
+<<<<<<< HEAD
                 <label htmlFor="details" className={labelClasses}>تفاصيل إضافية (اختياري)</label>
                 <textarea id="details" name="details" value={formData.details || ''} onChange={handleChange} placeholder="تفاصيل إضافية عن الطلب" className={inputClasses} rows={3}></textarea>
+=======
+<<<<<<< HEAD
+                <label htmlFor="details" className={labelClasses}>تفاصيل إضافية (اختياري)</label>
+                <textarea id="details" name="details" value={formData.details || ''} onChange={handleChange} placeholder="تفاصيل إضافية عن الطلب" className={inputClasses} rows={3}></textarea>
+=======
+                <label htmlFor="details" className="block text-sm font-medium text-gray-300 mb-1">تفاصيل إضافية (اختياري)</label>
+                <textarea id="details" name="details" value={formData.details || ''} onChange={handleChange} placeholder="تفاصيل إضافية عن الطلب" className="w-full p-2 bg-gray-700 rounded" rows={3}></textarea>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             </div>
             
             <div className="flex justify-end space-x-2 space-x-reverse pt-4">
@@ -258,7 +481,16 @@ const OperationDetailsModal: React.FC<{
     operation: Operation | null;
     beneficiary?: Beneficiary;
     assistanceType?: AssistanceType;
+<<<<<<< HEAD
 }> = ({ isOpen, onClose, operation, beneficiary, assistanceType }) => {
+=======
+<<<<<<< HEAD
+}> = ({ isOpen, onClose, operation, beneficiary, assistanceType }) => {
+=======
+    employees: Employee[];
+}> = ({ isOpen, onClose, operation, beneficiary, assistanceType, employees }) => {
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     if (!isOpen || !operation) return null;
 
     const handlePrint = () => {
@@ -271,6 +503,15 @@ const OperationDetailsModal: React.FC<{
         'معلقة': 'bg-amber-500 text-white',
     };
     
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    const employee = employees.find(e => e.national_id === operation.employee_national_id);
+    const employeeName = employee ? employee.name : (operation.employee_national_id === 'VOLUNTEER' ? 'متطوع' : 'غير محدد');
+
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={`تفاصيل العملية #${operation.code}`}>
             <div id="printable-operation-details">
@@ -283,9 +524,21 @@ const OperationDetailsModal: React.FC<{
 
                 <div className="space-y-4">
                     {/* Beneficiary Info */}
+<<<<<<< HEAD
                     <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
                         <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2 print:text-black print:border-b print:border-black">بيانات المستفيد</h3>
                         <div className="grid grid-cols-2 gap-2 text-gray-700 dark:text-gray-300 print:text-black">
+=======
+<<<<<<< HEAD
+                    <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
+                        <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2 print:text-black print:border-b print:border-black">بيانات المستفيد</h3>
+                        <div className="grid grid-cols-2 gap-2 text-gray-700 dark:text-gray-300 print:text-black">
+=======
+                    <div className="p-4 bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
+                        <h3 className="text-xl font-bold text-emerald-400 mb-2 print:text-black print:border-b print:border-black">بيانات المستفيد</h3>
+                        <div className="grid grid-cols-2 gap-2 text-gray-300 print:text-black">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             <p><strong>كود العملية:</strong> {operation.code}</p>
                             <p><strong>الاسم:</strong> {beneficiary?.name || 'غير متوفر'}</p>
                             <p><strong>الرقم القومي:</strong> {operation.beneficiary_national_id}</p>
@@ -294,21 +547,52 @@ const OperationDetailsModal: React.FC<{
                     </div>
 
                     {/* Assistance Info */}
+<<<<<<< HEAD
                     <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
                         <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2 print:text-black print:border-b print:border-black">تفاصيل المساعدة</h3>
                         <div className="grid grid-cols-2 gap-2 text-gray-700 dark:text-gray-300 print:text-black">
+=======
+<<<<<<< HEAD
+                    <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
+                        <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2 print:text-black print:border-b print:border-black">تفاصيل المساعدة</h3>
+                        <div className="grid grid-cols-2 gap-2 text-gray-700 dark:text-gray-300 print:text-black">
+=======
+                    <div className="p-4 bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
+                        <h3 className="text-xl font-bold text-emerald-400 mb-2 print:text-black print:border-b print:border-black">تفاصيل المساعدة</h3>
+                        <div className="grid grid-cols-2 gap-2 text-gray-300 print:text-black">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             <p><strong>نوع المساعدة:</strong> {assistanceType?.name || 'غير متوفر'}</p>
                             <p><strong>القيمة:</strong> {operation.amount.toLocaleString('ar-EG')} جنيه</p>
                             <p><strong>تاريخ تقديم الطلب:</strong> {operation.date}</p>
                             <p><strong>جهة الإنفاق:</strong> {operation.spending_entity}</p>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+                            <p><strong>الموظف المسؤول:</strong> {employeeName}</p>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             <p className="col-span-2"><strong>تفاصيل الطلب:</strong> {operation.details || 'لا يوجد'}</p>
                         </div>
                     </div>
 
                     {/* Status Info */}
+<<<<<<< HEAD
                     <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
                          <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2 print:text-black print:border-b print:border-black">حالة وقرار اللجنة</h3>
                          <div className="grid grid-cols-2 gap-2 text-gray-700 dark:text-gray-300 print:text-black items-start">
+=======
+<<<<<<< HEAD
+                    <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
+                         <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2 print:text-black print:border-b print:border-black">حالة وقرار اللجنة</h3>
+                         <div className="grid grid-cols-2 gap-2 text-gray-700 dark:text-gray-300 print:text-black items-start">
+=======
+                    <div className="p-4 bg-gray-700/50 rounded-lg print:border print:border-gray-300 print:bg-white">
+                         <h3 className="text-xl font-bold text-emerald-400 mb-2 print:text-black print:border-b print:border-black">حالة وقرار اللجنة</h3>
+                         <div className="grid grid-cols-2 gap-2 text-gray-300 print:text-black items-start">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             <div className="col-span-2">
                                 <strong>الحالة:</strong>
                                 <span className={`px-3 py-1 text-sm font-semibold rounded-full mr-2 ${statusClasses[operation.status]} print:bg-gray-200 print:text-black print:border print:border-gray-400`}>{operation.status}</span>
@@ -361,7 +645,15 @@ const Pagination: React.FC<{
                 <button
                     key={number}
                     onClick={() => onPageChange(number)}
+<<<<<<< HEAD
                     className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${ currentPage === number ? 'bg-emerald-500 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600' }`}
+=======
+<<<<<<< HEAD
+                    className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${ currentPage === number ? 'bg-emerald-500 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600' }`}
+=======
+                    className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${ currentPage === number ? 'bg-emerald-500 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600' }`}
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 >
                     {number}
                 </button>
@@ -373,7 +665,15 @@ const Pagination: React.FC<{
     );
 };
 
+<<<<<<< HEAD
 export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setOperations, beneficiaries, assistanceTypes, showToast }) => {
+=======
+<<<<<<< HEAD
+export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setOperations, beneficiaries, assistanceTypes, showToast }) => {
+=======
+export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setOperations, beneficiaries, assistanceTypes, employees, showToast }) => {
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
     const [operationToEdit, setOperationToEdit] = useState<Operation | null>(null);
@@ -389,9 +689,18 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
     const [selectedIds, setSelectedIds] = useState(new Set<number>());
     const headerCheckboxRef = useRef<HTMLInputElement>(null);
     const ITEMS_PER_PAGE = 10;
+<<<<<<< HEAD
 
     const inputFilterClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500";
     const labelFilterClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+=======
+<<<<<<< HEAD
+
+    const inputFilterClasses = "w-full p-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500";
+    const labelFilterClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+=======
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
     
     const filteredOperations = useMemo(() => {
         return operations.filter(op => {
@@ -543,6 +852,15 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
         const dataToExport = filteredOperations.map(op => {
             const beneficiary = beneficiaries.find(b => b.national_id === op.beneficiary_national_id);
             const assistance = assistanceTypes.find(a => a.id === op.assistance_id);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+            const employee = employees.find(e => e.national_id === op.employee_national_id);
+            const employeeName = employee ? employee.name : (op.employee_national_id === 'VOLUNTEER' ? 'متطوع' : '');
+
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             return {
                 'كود العملية': op.code,
                 'المستفيد': beneficiary?.name || 'غير معروف',
@@ -551,6 +869,13 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
                 'القيمة': op.amount,
                 'تاريخ تقديم الطلب': op.date,
                 'جهة الإنفاق': op.spending_entity,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+                'الموظف المسؤول': employeeName,
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 'رقم اللجنة': op.committee_number || '',
                 'وصف قرار اللجنة': op.committee_decision_description || '',
                 'الحالة': op.status,
@@ -593,7 +918,15 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
     
     const ThSortable: React.FC<{ sortKey: OperationSortKey; label: string; }> = ({ sortKey, label }) => (
         <th className="p-3">
+<<<<<<< HEAD
             <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+<<<<<<< HEAD
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus:outline-none">
+=======
+            <button onClick={() => requestSort(sortKey)} className="w-full flex items-center justify-end text-right font-semibold text-gray-300 hover:text-white transition-colors focus:outline-none">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                 <span>{label}</span>
                 <i className={`fas ${getSortDirectionIcon(sortKey)} mr-2`}></i>
             </button>
@@ -619,6 +952,10 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
                  )}
             </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md my-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="md:col-span-1">
@@ -628,6 +965,20 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
                      <div>
                         <label htmlFor="statusFilter" className={labelFilterClasses}>فلترة بالحالة</label>
                         <select id="statusFilter" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as OperationStatus | '')} className={inputFilterClasses}>
+<<<<<<< HEAD
+=======
+=======
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md my-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="md:col-span-1">
+                        <label htmlFor="searchFilter" className="block text-sm font-medium text-gray-300 mb-1">بحث بالاسم/الرقم القومي/الكود</label>
+                        <input id="searchFilter" type="text" placeholder="ابحث..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full p-2 bg-gray-700 rounded text-white" />
+                    </div>
+                     <div>
+                        <label htmlFor="statusFilter" className="block text-sm font-medium text-gray-300 mb-1">فلترة بالحالة</label>
+                        <select id="statusFilter" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as OperationStatus | '')} className="w-full p-2 bg-gray-700 rounded text-white">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             <option value="">كل الحالات</option>
                             <option value="معلقة">معلقة</option>
                             <option value="مقبوله">مقبوله</option>
@@ -635,22 +986,52 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
                         </select>
                     </div>
                      <div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         <label htmlFor="startDateFilter" className={labelFilterClasses}>من تاريخ</label>
                         <input id="startDateFilter" type="date" value={filterStartDate} onChange={(e) => setFilterStartDate(e.target.value)} className={inputFilterClasses}/>
                     </div>
                     <div>
                         <label htmlFor="endDateFilter" className={labelFilterClasses}>إلى تاريخ</label>
                         <input id="endDateFilter" type="date" value={filterEndDate} onChange={(e) => setFilterEndDate(e.target.value)} className={inputFilterClasses}/>
+<<<<<<< HEAD
+=======
+=======
+                        <label htmlFor="startDateFilter" className="block text-sm font-medium text-gray-300 mb-1">من تاريخ</label>
+                        <input id="startDateFilter" type="date" value={filterStartDate} onChange={(e) => setFilterStartDate(e.target.value)} className="w-full p-2 bg-gray-700 rounded text-white"/>
+                    </div>
+                    <div>
+                        <label htmlFor="endDateFilter" className="block text-sm font-medium text-gray-300 mb-1">إلى تاريخ</label>
+                        <input id="endDateFilter" type="date" value={filterEndDate} onChange={(e) => setFilterEndDate(e.target.value)} className="w-full p-2 bg-gray-700 rounded text-white"/>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                     </div>
                 </div>
             </div>
             
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
                 <table className="w-full text-right">
                     <thead className="bg-gray-50 dark:bg-gray-700">
                         <tr>
                              <th className="p-3 text-center w-12">
                                 <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+<<<<<<< HEAD
+=======
+=======
+            <div className="bg-gray-800 shadow-lg rounded-lg overflow-x-auto">
+                <table className="w-full text-right">
+                    <thead className="bg-gray-700">
+                        <tr>
+                             <th className="p-3 text-center w-12">
+                                <input type="checkbox" ref={headerCheckboxRef} onChange={handleSelectAll} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                             </th>
                             <ThSortable sortKey="code" label="كود العملية" />
                             <ThSortable sortKey="beneficiaryName" label="اسم المستفيد" />
@@ -663,12 +1044,27 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
                         {paginatedOperations.map(op => {
                             const beneficiary = beneficiaries.find(b => b.national_id === op.beneficiary_national_id);
                             return (
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                 <tr key={op.id} className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${selectedIds.has(op.id) ? 'bg-emerald-50 dark:bg-emerald-900/50' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}>
                                     <td className="p-3 text-center">
                                         <input type="checkbox" checked={selectedIds.has(op.id)} onChange={() => handleSelect(op.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
                                     </td>
                                     <td className="p-3">{op.code}</td>
                                     <td className="p-3 text-emerald-600 dark:text-emerald-400 font-semibold cursor-pointer hover:text-emerald-500 dark:hover:text-emerald-300" onClick={() => openDetailsModal(op)}>
+<<<<<<< HEAD
+=======
+=======
+                                <tr key={op.id} className={`border-b border-gray-700 transition-colors ${selectedIds.has(op.id) ? 'bg-emerald-900/50' : 'hover:bg-gray-700/50'}`}>
+                                    <td className="p-3 text-center">
+                                        <input type="checkbox" checked={selectedIds.has(op.id)} onChange={() => handleSelect(op.id)} className="form-checkbox h-5 w-5 text-emerald-600 bg-gray-800 border-gray-600 rounded focus:ring-emerald-500 cursor-pointer" />
+                                    </td>
+                                    <td className="p-3">{op.code}</td>
+                                    <td className="p-3 text-emerald-400 font-semibold cursor-pointer hover:text-emerald-300" onClick={() => openDetailsModal(op)}>
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                                         {beneficiary?.name || 'غير معروف'}
                                     </td>
                                     <td className="p-3">{op.date}</td>
@@ -692,14 +1088,30 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
                     </tbody>
                 </table>
                  {sortedOperations.length === 0 && (
+<<<<<<< HEAD
                     <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+<<<<<<< HEAD
+                    <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+=======
+                    <div className="text-center p-6 text-gray-400">
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
                         لا توجد بيانات تطابق معايير البحث الحالية.
                     </div>
                 )}
             </div>
             <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={operationToEdit ? 'تعديل عملية' : 'إضافة عملية'}>
+<<<<<<< HEAD
                 <OperationForm onSubmit={operationToEdit ? handleEdit : handleAdd} onClose={() => setIsModalOpen(false)} operationToEdit={operationToEdit} beneficiaries={beneficiaries} assistanceTypes={assistanceTypes} />
+=======
+<<<<<<< HEAD
+                <OperationForm onSubmit={operationToEdit ? handleEdit : handleAdd} onClose={() => setIsModalOpen(false)} operationToEdit={operationToEdit} beneficiaries={beneficiaries} assistanceTypes={assistanceTypes} />
+=======
+                <OperationForm onSubmit={operationToEdit ? handleEdit : handleAdd} onClose={() => setIsModalOpen(false)} operationToEdit={operationToEdit} beneficiaries={beneficiaries} assistanceTypes={assistanceTypes} employees={employees} />
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             </Modal>
             <OperationDetailsModal 
                 isOpen={isDetailsModalOpen}
@@ -707,6 +1119,13 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
                 operation={selectedOperation}
                 beneficiary={beneficiaries.find(b => b.national_id === selectedOperation?.beneficiary_national_id)}
                 assistanceType={assistanceTypes.find(a => a.id === selectedOperation?.assistance_id)}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+                employees={employees}
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
             />
             <FileProviderModal
                 isOpen={isProviderModalOpen}
@@ -716,4 +1135,12 @@ export const OperationsPage: React.FC<OperationsPageProps> = ({ operations, setO
             />
         </div>
     );
+<<<<<<< HEAD
 };
+=======
+<<<<<<< HEAD
+};
+=======
+};
+>>>>>>> b1fbf46c003fb4d099b7af607824fabd37368f0f
+>>>>>>> bf4042072637e4b39af16bb58dac64e19e33904e
